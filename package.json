@@ -1,20 +1,24 @@
 {
-	"name": "commando",
-	"version": "1.0.0",
-	"description": "hiccup372005's Discord Bot",
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/hiccup372005/commando.git"
-	},
-	"author": "hiccup372005",
-	"license": "ISC",
-	"bugs": {
-	"url": "https://github.com/hiccup372005/commando/issues"
-	},
-	"homepage": "https://github.com/hiccup372005/commando#readme",
-	"dependencies": {
-	"discord.js": "^12.3.1",
-	"discord.js-commando": "github:discordjs/Commando"
-	}
+  "name": "commando",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiccup372005/commando.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hiccup372005/commando/issues"
+  },
+  "homepage": "https://github.com/hiccup372005/commando#readme",
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "discord.js-commando": "github:discordjs/Commando",
+    "eslint": "^7.7.0"
+  }
 }
