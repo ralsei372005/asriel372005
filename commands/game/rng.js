@@ -14,11 +14,9 @@ module.exports = class rng extends Command {
 			args: [
 				{
 					key: 'range',
-					prompt: 'Number Range? (Syntax: **`<begin>..<end>`**)',
+					prompt: 'Number Range? Syntax: **`<begin>..<end>`**)',
 					type: 'string',
-					validate: range => {
-						return /^\d+..\d+$/.test(range);
-					}
+					validate: range => /^\d+..\d+$/.test(range)
 				}
 			]
 		});
@@ -26,8 +24,14 @@ module.exports = class rng extends Command {
 
 	run (message, {range}) {
 		const {embed} = require('../../index');
-		const begin = parseInt(range.split('..')[0]);
-		const end = parseInt(range.split('..')[0]);
+		let begin = parseInt(range.split('..')[0]);
+		let end = parseInt(range.split('..')[1]);
+		if (begin == end) {
+			return message.say(`Wait a second... You think you can fool me? The random number will always be ${begin}!`);
+		}
+		if (begin > end) {
+			[begin, end] = [end, begin];
+		}
 		embed.setTitle(Math.floor(Math.random() * (end - begin + 1)) + begin);
 		message.say(embed);
 	}
