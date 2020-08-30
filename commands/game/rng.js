@@ -16,7 +16,7 @@ module.exports = class rng extends Command {
 					key: 'range',
 					prompt: 'Number Range? Syntax: **`<begin>..<end>`**)',
 					type: 'string',
-					validate: range => /^\d+..\d+$/.test(range)
+					validate: range => /^\d+\.\.\d+$/.test(range)
 				}
 			]
 		});
