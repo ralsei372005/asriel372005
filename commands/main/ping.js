@@ -1,17 +1,29 @@
-module.exports = {
-	info: 'Bot Ping & Discord Application Programming Interface (API) Ping!',
-	time: 15000,
-	run () {
-		const {message, embed} = require('../index');
+const {Command} = require('discord.js-commando');
+const {MessageEmbed} = require('discord.js');
 
-		message.channel.send('Pinging...').then($message => {
-			embed.
-				addFields(
-					{name: '🤖 Bot Ping:', value: `${Math.floor($message.createdAt - message.createdAt)}ms`},
-					{name: '💻 Discord API (Application Programming Interface) Ping:', value: `${Math.floor(message.client.ws.ping)}ms`}
-				);
-			message.channel.send(embed);
-			$message.delete();
+module.exports = class ping extends Command {
+	constructor (client) {
+		super(client, {
+			name: 'ping',
+			group: 'main',
+			memberName: 'ping',
+			description: 'Bot Ping & Discord API Ping'
+		});
+	}
+
+	run (message) {
+			const embed = new MessageEmbed().
+			setTimestamp().
+			setColor('#ff0000').
+			setAuthor(message.author.tag, message.author.displayAvatarURL({format: 'png', dynamic: true}));
+		message.channel.send(embed).then($message => {
+			embed.addFields({
+				name: '🤖 Bot Ping:',
+				value: `${Math.floor($message.createdAt - message.createdAt)}ms`}, {
+				name: '💻 Discord API (Application Programming Interface) Ping:',
+				value: `${Math.floor(message.client.ws.ping)}ms`}
+			);
+			$message.edit('', embed);
 		});
 	}
 };

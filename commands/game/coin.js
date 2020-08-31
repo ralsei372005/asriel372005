@@ -9,15 +9,16 @@ module.exports = class coin extends Command {
 			memberName: 'coin',
 			description: 'Flip a coin!',
 			throttling: {
-				usages: 2,
-				duration: 10
+				usages: 5,
+				duration: 20
 			},
 			args: [
 				{
 					key: 'pick',
-					prompt: 'testing',
+					prompt: '',
 					type: 'string',
-					default: ''
+					default: '',
+					oneOf: ['', 'h', 't', 'head', 'tail', 'heads', 'tails']
 				}
 			]
 		});

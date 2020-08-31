@@ -17,7 +17,9 @@ client.registry.
 		['moderation', 'Moderations Commands!']
 	]).
 	registerDefaultGroups().
-	registerDefaultCommands().
+	registerDefaultCommands({
+		ping: false
+	}).
 	registerCommandsIn(path.join(__dirname, 'commands'));
 
 
@@ -27,11 +29,9 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-	const embed = new MessageEmbed().
-		setTimestamp().
-		setColor('#ff0000').
-		setAuthor(message.author.tag, message.author.displayAvatarURL({format: 'png', dynamic: true}));
-	module.exports = {embed};
+	if (!message.author.bot) {
+		message.say(':nitroflex:');
+	}
 });
 
 client.login('NzQ4OTIxNDgyMTIxMzE0MzE0.X0kdew.xTvoo_uFn1AktecMhVzC0IKNW-E');

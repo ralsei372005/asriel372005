@@ -1,6 +1,6 @@
 const {Command} = require('discord.js-commando');
 
-module.exports = class coin extends Command {
+module.exports = class dice extends Command {
 	constructor (client) {
 		super(client, {
 			name: 'dice',
@@ -9,15 +9,16 @@ module.exports = class coin extends Command {
 			memberName: 'dice',
 			description: 'Roll a dice!',
 			throttling: {
-				usages: 2,
-				duration: 10
+				usages: 5,
+				duration: 20
 			},
 			args: [
 				{
 					key: 'pick',
-					prompt: 'testing',
+					prompt: '',
 					type: 'string',
-					default: ''
+					default: '',
+					oneOf: ['', '1', '2', '3', '4', '5', '6', 'one', 'two', 'three', 'four', 'five', 'six']
 				}
 			]
 		});

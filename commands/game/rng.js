@@ -8,8 +8,8 @@ module.exports = class rng extends Command {
 			memberName: 'rgn',
 			description: 'Random Number Generator! Generate Random Number range <begin>..<end>',
 			throttling: {
-				usages: 2,
-				duration: 10
+				usages: 5,
+				duration: 20
 			},
 			args: [
 				{
