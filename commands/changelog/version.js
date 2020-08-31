@@ -1,4 +1,5 @@
-const {Command} = require('discord.js-commando');
+const { Command } = require('discord.js-commando');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class version extends Command {
 	constructor (client) {
@@ -16,8 +17,16 @@ module.exports = class version extends Command {
 	}
 
 	run (message) {
-		const {embed} = require('../../index');
-		embed.setTitle('Version: Alpha 0.1.0').setDescription('Made by: hiccup372005').addFields({name: 'Change Logs:', value: '~~Stable: Running commands in DM is deprecated.~~\nMaster: Migrating commands to commando.'});
-		message.say(embed);
+		message.say(new MessageEmbed()
+			.setTimestamp()
+			.setColor('#ff0000')
+			.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true }))
+			.setTitle('Version: Alpha 0.1.0')
+			.setDescription('Made by: hiccup372005')
+			.addFields({
+				name: 'Change Logs:',
+				value: '~~Stable: Running commands in DM is deprecated.~~\nMaster: Migrating commands to commando.'
+			})
+		);
 	}
 };

@@ -12,18 +12,19 @@ module.exports = class ping extends Command {
 	}
 
 	run (message) {
-			const embed = new MessageEmbed().
-			setTimestamp().
-			setColor('#ff0000').
-			setAuthor(message.author.tag, message.author.displayAvatarURL({format: 'png', dynamic: true}));
-		message.channel.send(embed).then($message => {
-			embed.addFields({
-				name: '🤖 Bot Ping:',
-				value: `${Math.floor($message.createdAt - message.createdAt)}ms`}, {
-				name: '💻 Discord API (Application Programming Interface) Ping:',
-				value: `${Math.floor(message.client.ws.ping)}ms`}
+		message.channel.send('Pinging...').then($message => {
+			$message.edit('', new MessageEmbed().
+				setTimestamp().
+				setColor('#ff0000').
+				setAuthor(message.author.tag, message.author.displayAvatarURL({format: 'png', dynamic: true})).
+				addFields({
+					name: '🤖 Bot Ping:',
+					value: `${Math.floor($message.createdAt - message.createdAt)}ms`
+				}, {
+					name: '💻 Discord API Ping:',
+					value: `${Math.floor(message.client.ws.ping)}ms`
+				})
 			);
-			$message.edit('', embed);
 		});
 	}
 };
