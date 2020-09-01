@@ -1,4 +1,4 @@
-const {Command} = require('discord.js-commando');
+const { Command } = require('discord.js-commando');
 
 module.exports = class rng extends Command {
 	constructor (client) {
@@ -22,8 +22,8 @@ module.exports = class rng extends Command {
 		});
 	}
 
-	run (message, {range}) {
-		const {embed} = require('../../index');
+	run (message, { range }) {
+		const { embed } = require('../../index');
 		let begin = parseInt(range.split('..')[0]);
 		let end = parseInt(range.split('..')[1]);
 		if (begin == end) {

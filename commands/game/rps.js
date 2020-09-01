@@ -1,4 +1,4 @@
-const {Command} = require('discord.js-commando');
+const { Command } = require('discord.js-commando');
 
 module.exports = class rng extends Command {
 	constructor (client) {
@@ -23,8 +23,8 @@ module.exports = class rng extends Command {
 		});
 	}
 
-	run (message, {pick}) {
-		const {embed} = require('../../index');
+	run (message, { pick }) {
+		const { embed } = require('../../index');
 		const hand = ['Rock', 'Paper', 'Scissors' ][Math.floor(Math.random() * 3)];
 		embed.setTitle(`${hand}!`);
 		if (pick) {

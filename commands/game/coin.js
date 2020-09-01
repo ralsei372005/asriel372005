@@ -1,4 +1,4 @@
-const {Command} = require('discord.js-commando');
+const { Command } = require('discord.js-commando');
 
 module.exports = class coin extends Command {
 	constructor (client) {
@@ -23,8 +23,8 @@ module.exports = class coin extends Command {
 			]
 		});
 	}
-	run (message, {pick}) {
-		const {embed} = require('../../index');
+	run (message, { pick }) {
+		const { embed } = require('../../index');
 		const $coin = ['Heads', 'Tails'][Math.round(Math.random())];
 		embed.setTitle(`${$coin}!`);
 		if (pick) {

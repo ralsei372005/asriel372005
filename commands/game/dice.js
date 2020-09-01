@@ -1,4 +1,4 @@
-const {Command} = require('discord.js-commando');
+const { Command } = require('discord.js-commando');
 
 module.exports = class dice extends Command {
 	constructor (client) {
@@ -23,8 +23,8 @@ module.exports = class dice extends Command {
 			]
 		});
 	}
-	run (message, {pick}) {
-		const {embed} = require('../../index');
+	run (message, { pick }) {
+		const { embed } = require('../../index');
 		const $dice = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'][Math.floor(Math.random() * 6)];
 		embed.setTitle(`${$dice}!`);
 		if (pick) {
