@@ -2,7 +2,7 @@ const { CommandoClient } = require('discord.js-commando');
 const path = require('path');
 
 const client = new CommandoClient({
-	commandPrefix: 'c3',
+	commandPrefix: '37',
 	owner: '379643682984296448'
 });
 
@@ -23,7 +23,7 @@ client.registry
 
 
 client.on('ready', () => {
-	console.log(`Logged in as ${client.user.tag}! (${client.user.id})`);
+	console.log(`Logged in as ${client.user.tag}!`);
 	client.user.setActivity('with Commando');
 });
 
