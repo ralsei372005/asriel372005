@@ -1,5 +1,4 @@
 const { CommandoClient } = require('discord.js-commando');
-const path = require('path');
 
 const client = new CommandoClient({
 	commandPrefix: '37',
@@ -19,7 +18,7 @@ client.registry
 	.registerDefaultCommands({
 		ping: false
 	})
-	.registerCommandsIn(path.join(__dirname, 'commands'));
+	.registerCommandsIn(__dirname);
 
 
 client.on('ready', () => {
