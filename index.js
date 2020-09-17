@@ -1,4 +1,5 @@
 const { CommandoClient } = require('discord.js-commando');
+const path = require('path');
 
 const client = new CommandoClient({
 	commandPrefix: '37',
@@ -8,22 +9,18 @@ const client = new CommandoClient({
 client.registry
 	.registerDefaultTypes()
 	.registerGroups([
-		['main', 'Main!'],
 		['utility', 'Utilities!'],
-		['changelog', 'Change Logs!'],
-		['game', 'Games!'],
+		['version', 'Version & Change Log!'],
 		['moderation', 'Moderations Commands!']
 	])
 	.registerDefaultGroups()
-	.registerDefaultCommands({
-		ping: false
-	})
-	.registerCommandsIn(__dirname);
+	.registerDefaultCommands({})
+	.registerCommandsIn(path.join(__dirname, 'commands'));
 
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
-	client.user.setActivity('with Commando');
+	client.user.setActivity('37help | hiccup372005\'s Discord Bot');
 });
 
-client.login('NzQ4OTIxNDgyMTIxMzE0MzE0.X0kdew.xTvoo_uFn1AktecMhVzC0IKNW-E');
+client.login('NTMyNTQ5NDcxMjEzNTg0Mzk1.XDX1WA.qS5278OmNVk8c1gkzcJo4QrYTS8');
