@@ -1,23 +1,38 @@
-//! Warning! Remember to checks for permission!
+// * v2020.09.17
 
-// module.exports = {
-// 	alts: ['delete', 'clear'],
-// 	args: [1, '<Number>'],
-// 	info: 'Bulk Delete <Number> Messages',
-// 	perm: 'MANAGE_MESSAGES',
-// 	guild: true,
-// 	run () {
-// 		const {message, args} = require('../index');
+const { Command } = require('discord.js-commando');
 
-// 		let int = parseInt(args[1]) + 1;
-// 		if (isNaN(int)) {
-// 			return message.channel.send('Number Not Recognized.');
-// 		} else if (int < 1) {
-// 			return message.channel.send('Number Must Be Greater than 0');
-// 		}
-// 		if (int > 100) {
-// 			int = 100;
-// 		}
-// 		message.guild.me.hasPermission('MANAGE_MESSAGES') ? message.channel.bulkDelete(int, true) : message.channel.send('Missing Permission: **`\'MANAGE_MESSAGES\'`**');
-// 	}
-// };
+module.exports = class del extends Command {
+	constructor (client) {
+		super (client, {
+			name: 'del',
+			aliases: ['delete', 'clear'],
+			group: 'moderation',
+			memberName: 'bulkDelete',
+			description: 'Bulk Delete Messages',
+			throttling: {
+				usage: 2,
+				duration: 10
+			},
+			guildOnly: true,
+			clientPermissions: ['MANAGE_MESSAGES'],
+			userPermissions: ['MANAGE_MESSAGES'],
+			args: [
+				{
+					key: 'int',
+					prompt: 'Number Of Messages To Bulk Delete?',
+					type: 'integer',
+					validate: int => int > 0
+				}
+			]
+		});
+	}
+
+	run (message, { int }) {
+		int++;
+		if (int > 100) {
+			int = 100;
+		}
+		message.channel.bulkDelete(int, true);
+	}
+};

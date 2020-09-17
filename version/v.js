@@ -22,7 +22,7 @@
 // 			.setTimestamp()
 // 			.setColor('#ff0000')
 // 			.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true }))
-// 			.setTitle('Version: Alpha 0.2.0')
+// 			.setTitle('Version: Alpha 0.2.0 ||v2020.09.17||')
 // 			.setDescription('Made by: hiccup372005')
 // 		);
 // 	}

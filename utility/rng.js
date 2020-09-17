@@ -1,13 +1,15 @@
-//* Accepted.
+// * v2020.09.17
 
 const { Command } = require('discord.js-commando');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class rng extends Command {
 	constructor (client) {
 		super(client, {
 			name: 'rng',
+			alias: ['RanInt'],
 			group: 'game',
-			memberName: 'rgn',
+			memberName: 'RanInt',
 			description: 'Random Number Generator! Generate Random Number **`<begin>..<end>`**',
 			throttling: {
 				usages: 5,
@@ -25,7 +27,6 @@ module.exports = class rng extends Command {
 	}
 
 	run (message, { range }) {
-		const { embed } = require('../../index');
 		let begin = parseInt(range.split('..')[0]);
 		let end = parseInt(range.split('..')[1]);
 		if (begin == end) {
@@ -34,7 +35,11 @@ module.exports = class rng extends Command {
 		if (begin > end) {
 			[begin, end] = [end, begin];
 		}
-		embed.setTitle(Math.floor(Math.random() * (end - begin + 1)) + begin);
-		message.say(embed);
+		message.say(new MessageEmbed()
+			.setTimestamp()
+			.setColor('#ff0000')
+			.setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true }))
+			.setTitle(Math.floor(Math.random() * (end - begin + 1)) + begin)
+		);
 	}
 };
