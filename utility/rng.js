@@ -1,3 +1,5 @@
+//* Accepted.
+
 const { Command } = require('discord.js-commando');
 
 module.exports = class rng extends Command {
@@ -6,14 +8,14 @@ module.exports = class rng extends Command {
 			name: 'rng',
 			group: 'game',
 			memberName: 'rgn',
-			description: 'Random Number Generator! Generate Random Number range <begin>..<end>',
+			description: 'Random Number Generator! Generate Random Number **`<begin>..<end>`**',
 			throttling: {
 				usages: 5,
 				duration: 20
 			},
 			args: [
 				{
-					key: 'range',
+					key: 'args',
 					prompt: 'Number Range? Syntax: **`<begin>..<end>`**)',
 					type: 'string',
 					validate: range => /^\d+\.\.\d+$/.test(range)
