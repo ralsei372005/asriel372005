@@ -13,7 +13,7 @@
 		"comma-spacing": "error",
 		"comma-style": "error",
 		"curly": "error",
-		"dot-location": ["error", "property"],
+		"dot-location": "error",
 		"indent": ["error", "tab"],
 		"max-nested-callbacks": "error",
 		"max-statements-per-line": "error",
