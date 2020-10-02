@@ -20,13 +20,13 @@ module.exports = class guild extends Command {
 	}
 
 	run (message) {
-		message.say(new MessageEmbed()
-			.setTimestamp()
-			.setColor('#ff0000')
-			.setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true }))
-			.setThumbnail(message.guild.iconURL({ format: 'png', dynamic: true }))
-			.setTitle(message.guild.name)
-			.addFields(
+		message.say(new MessageEmbed().
+			setTimestamp().
+			setColor('#ff0000').
+			setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true })).
+			setThumbnail(message.guild.iconURL({ format: 'png', dynamic: true })).
+			setTitle(message.guild.name).
+			addFields(
 				{
 					name: 'Owner:',
 					value: message.guild.owner,
@@ -48,10 +48,10 @@ module.exports = class guild extends Command {
 				},
 				{
 					name: 'Roles:',
-					value: message.guild.roles.cache
-						.filter(role => role.id !== message.guild.id)
-						.map(role => role)
-						.join(' ') || 'none'
+					value: message.guild.roles.cache.
+						filter(role => role.id !== message.guild.id).
+						map(role => role).
+						join(' ') || 'none'
 				}
 			)
 		);

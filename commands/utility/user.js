@@ -37,13 +37,13 @@ module.exports = class user extends Command {
 		if (!member) {
 			return message.channel.send('Member Not Found.');
 		}
-		message.say(new MessageEmbed()
-			.setTimestamp()
-			.setColor('#ff0000')
-			.setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true }))
-			.setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true }))
-			.setTitle(member.user.tag)
-			.addFields(
+		message.say(new MessageEmbed().
+			setTimestamp().
+			setColor('#ff0000').
+			setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true })).
+			setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true })).
+			setTitle(member.user.tag).
+			addFields(
 				{
 					name: 'Nickname: ',
 					value: member.displayName,
@@ -56,10 +56,10 @@ module.exports = class user extends Command {
 				},
 				{
 					name: 'Roles: ',
-					value: member.roles.cache
-						.filter(role => role.id !== message.guild.id)
-						.map(role => role)
-						.join(' ') || 'none'
+					value: member.roles.cache.
+						filter(role => role.id !== message.guild.id).
+						map(role => role).
+						join(' ') || 'none'
 				},
 				{
 					name: 'Username:',

@@ -19,13 +19,13 @@ module.exports = class version extends Command {
 	}
 
 	run (message) {
-		message.say(new MessageEmbed()
-			.setTimestamp()
-			.setColor('#ff0000')
-			.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true }))
-			.setTitle('Version: 2020.9.17 | Alpha 0.2.0')
-			.setDescription('Made by: hiccup372005')
-			.addFields(
+		message.say(new MessageEmbed().
+			setTimestamp().
+			setColor('#ff0000').
+			setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true })).
+			setTitle('Version: 2020.9.17 | Alpha 0.2.0').
+			setDescription('Made by: hiccup372005').
+			addFields(
 				{
 					name: 'Change Logs:',
 					value: 'Today, I\'m introducing a new **`YYYY.MM.DD`** naming convention ~~||totally not copied from Among Us naming convention.||~~)\nThe new naming convention let you know the last time I updated my bot and chriscj please stop telling people that my bot version sky rocket and jumping version.'

@@ -35,11 +35,11 @@ module.exports = class rng extends Command {
 		if (begin > end) {
 			[begin, end] = [end, begin];
 		}
-		message.say(new MessageEmbed()
-			.setTimestamp()
-			.setColor('#ff0000')
-			.setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true }))
-			.setTitle(Math.floor(Math.random() * (end - begin + 1)) + begin)
+		message.say(new MessageEmbed().
+			setTimestamp().
+			setColor('#ff0000').
+			setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true })).
+			setTitle(Math.floor(Math.random() * (end - begin + 1)) + begin)
 		);
 	}
 };

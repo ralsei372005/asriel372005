@@ -1,6 +1,6 @@
 {
 	"name": "toothless372005",
-	"version": "2020.9.17",
+	"version": "2020.10.2",
 	"description": "hiccup372005's Discord Bot",
 	"main": "index.js",
 	"repository": {
@@ -16,6 +16,6 @@
 	"dependencies": {
 		"discord.js": "^12.3.1",
 		"discord.js-commando": "github:discordjs/Commando",
-		"eslint": "^7.9.0"
+		"eslint": "^7.10.0"
 	}
 }
