@@ -23,4 +23,11 @@ client.on('ready', () => {
 	client.user.setActivity('t3help | hiccup372005\'s Discord Bot');
 });
 
-client.login('NTMyNTQ5NDcxMjEzNTg0Mzk1.XDX1WA.qS5278OmNVk8c1gkzcJo4QrYTS8');
+client.login(process.env.TOKEN);
+
+const http = require('http');
+const server = http.createServer((req, res) => {
+	res.writeHead(200);
+	res.end('ok');
+});
+server.listen(3000);
