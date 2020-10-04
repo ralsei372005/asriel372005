@@ -18,7 +18,6 @@ module.exports = class guild extends Command {
 			guildOnly: true
 		});
 	}
-
 	run (message) {
 		message.say(new MessageEmbed().
 			setTimestamp().

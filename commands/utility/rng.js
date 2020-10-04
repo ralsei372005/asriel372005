@@ -25,7 +25,6 @@ module.exports = class rng extends Command {
 			]
 		});
 	}
-
 	run (message, { range }) {
 		let begin = parseInt(range.split('..')[0]);
 		let end = parseInt(range.split('..')[1]);

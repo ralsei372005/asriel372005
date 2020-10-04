@@ -1,5 +1,6 @@
-const { CommandoClient } = require('discord.js-commando');
+const http = require('http');
 const path = require('path');
+const { CommandoClient } = require('discord.js-commando');
 
 const client = new CommandoClient({
 	commandPrefix: 't3',
@@ -17,7 +18,6 @@ client.registry.
 	registerDefaultCommands().
 	registerCommandsIn(path.join(__dirname, 'commands'));
 
-
 client.on('ready', () => {
 	console.log('ready');
 	client.user.setActivity('t3help | hiccup372005\'s Discord Bot');
@@ -25,7 +25,6 @@ client.on('ready', () => {
 
 client.login(process.env.TOKEN);
 
-const http = require('http');
 const server = http.createServer((req, res) => {
 	res.writeHead(200);
 	res.end('ok');

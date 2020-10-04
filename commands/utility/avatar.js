@@ -25,7 +25,6 @@ module.exports = class avatar extends Command {
 			]
 		});
 	}
-
 	run (message, { member }) {
 		if (!member) {
 			member = message.member;

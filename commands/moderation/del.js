@@ -27,7 +27,6 @@ module.exports = class del extends Command {
 			]
 		});
 	}
-
 	run (message, { int }) {
 		int++;
 		if (int > 100) {

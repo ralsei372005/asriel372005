@@ -27,7 +27,6 @@ module.exports = class user extends Command {
 
 		});
 	}
-
 	run (message, { member }) {
 		if (!member) {
 			member = message.member;
