@@ -9,7 +9,7 @@ module.exports = class version extends Command {
 			name: 'version',
 			aliases: ['ver', 'v'],
 			group: 'changelog',
-			memberName: 'v',
+			memberName: 'mc',
 			description: 'Version & Change Log!',
 			throttling: {
 				usages: 1,
