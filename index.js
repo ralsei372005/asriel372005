@@ -11,7 +11,7 @@ client.registry.
 	registerDefaultTypes().
 	registerGroups([
 		['utility', 'Utilities!'],
-		['version', 'Version & Change Log!'],
+		['changelog', 'Version & Change Log!'],
 		['moderation', 'Moderations Commands!']
 	]).
 	registerDefaultGroups().

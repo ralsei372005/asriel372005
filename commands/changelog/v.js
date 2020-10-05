@@ -8,7 +8,7 @@ module.exports = class version extends Command {
 		super (client, {
 			name: 'version',
 			aliases: ['ver', 'v'],
-			group: 'version',
+			group: 'changelog',
 			memberName: 'v',
 			description: 'Version & Change Log!',
 			throttling: {
