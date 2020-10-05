@@ -18,14 +18,14 @@ module.exports = class version extends Command {
 		});
 	}
 	run (message) {
-		message.say(new MessageEmbed.
+		message.say(new MessageEmbed().
 			setTimestamp().
 			setColor('#ff0000').
 			setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true })).
 			setTitle('Minecraft: Java Edition - 1.16.3 Change Log!').
 			setDescription('Bug fixes\nGiving an item and a gold ingot to a Baby Piglin and killing it no longer duplicates the item\nPathfinding for Piglins, Piglin Brutes, Hoglins and Zoglins has been fixed and they can now correctly navigate to the player when attacking')
 		);
-		message.say(new MessageEmbed.
+		message.say(new MessageEmbed().
 			setTimestamp().
 			setColor('#ff0000').
 			setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true })).
