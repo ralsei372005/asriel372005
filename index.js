@@ -7,6 +7,13 @@ const client = new CommandoClient({
     owner: '379643682984296448'
 });
 
+client.login(process.env.TOKEN);
+
+client.on('ready', () => {
+    console.log('ready');
+    client.user.setActivity('t3help | hiccup372005\'s Discord Bot');
+});
+
 client.registry.
     registerDefaultTypes().
     registerGroups([
@@ -17,13 +24,6 @@ client.registry.
     registerDefaultGroups().
     registerDefaultCommands().
     registerCommandsIn(path.join(__dirname, 'commands'));
-
-client.on('ready', () => {
-    console.log('ready');
-    client.user.setActivity('t3help | hiccup372005\'s Discord Bot');
-});
-
-client.login(process.env.TOKEN);
 
 http.createServer((_request, respond) => {
     respond.writeHead(200);
