@@ -25,7 +25,8 @@ module.exports = class rng extends Command {
         });
     }
     run (message, { arg }) {
-        let [begin, end] = parseInt(arg.split('..'));
+        let begin = parseInt(arg.split('..')[0]);
+        let end = parseInt(arg.split('..')[1]);
         if (begin == end) {
             return message.say(`Wait a second... You think you can fool me? The random number will always be ${begin}!`);
         }
