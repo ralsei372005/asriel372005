@@ -3,7 +3,7 @@
 const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
 
-module.exports = class version extends Command {
+module.exports = class v extends Command {
     constructor (client) {
         super (client, {
             name: 'version',
