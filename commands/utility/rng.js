@@ -45,7 +45,7 @@ module.exports = class rng extends Command {
 function toEmoji (s) {
     let title;
     const emoji = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
-    for (const c in toString(s)) {
+    for (const c of toString(s)) {
         title += emoji[c];
     }
     return title;
