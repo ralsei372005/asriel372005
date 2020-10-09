@@ -1,4 +1,4 @@
-// * v2020.9.17
+// * v2020.10.9
 
 const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
@@ -13,12 +13,12 @@ module.exports = class user extends Command {
             description: 'User & Member Infomation!',
             throttling: {
                 usages: 3,
-                duration: 60
+                duration: 30
             },
             guildOnly: true,
             args: [
                 {
-                    key: 'user',
+                    key: 'arg',
                     prompt: '',
                     type: 'string',
                     default: ''
@@ -27,52 +27,52 @@ module.exports = class user extends Command {
 
         });
     }
-    run (message, { member }) {
-        if (!member) {
-            member = message.member;
+    run (message, { arg }) {
+        if (!arg) {
+            arg = message.member;
         } else {
-            member = message.mentions.members.first() || message.guild.members.cache.find($member => $member.displayName.toLowerCase().startsWith(member.toLowerCase()) || $member.user.tag.toLowerCase.startsWith(member.toLowerCase()));
+            arg = message.mentions.members.first() || message.guild.members.cache.find($member => $member.displayName.toLowerCase().startsWith(arg.toLowerCase()) || $member.user.tag.toLowerCase.startsWith(arg.toLowerCase()));
         }
-        if (!member) {
+        if (!arg) {
             return message.channel.send('Member Not Found.');
         }
         message.say(new MessageEmbed().
             setTimestamp().
             setColor('#ff0000').
             setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true })).
-            setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true })).
-            setTitle(member.user.tag).
+            setThumbnail(arg.user.avatarURL({ format: 'png', dynamic: true })).
+            setTitle(arg.user.tag).
             addFields(
                 {
                     name: 'Nickname: ',
-                    value: member.displayName,
+                    value: arg.displayName,
                     inline: true
                 },
                 {
                     name: 'Joined on: ',
-                    value: Intl.DateTimeFormat('utc').format(member.joinedAt),
+                    value: Intl.DateTimeFormat('utc').format(arg.joinedAt),
                     inline: true
                 },
                 {
                     name: 'Roles: ',
-                    value: member.roles.cache.
+                    value: arg.roles.cache.
                         filter(role => role.id !== message.guild.id).
                         map(role => role).
                         join(' ') || 'none'
                 },
                 {
                     name: 'Username:',
-                    value: member.user.tag,
+                    value: arg.user.tag,
                     inline: true
                 },
                 {
                     name: 'Created on:',
-                    value: Intl.DateTimeFormat('utc').format(member.user.createdAt),
+                    value: Intl.DateTimeFormat('utc').format(arg.user.createdAt),
                     inline: true
                 },
                 {
                     name: 'ID:',
-                    value: member.user.id
+                    value: arg.user.id
                 }
             )
         );
