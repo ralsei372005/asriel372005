@@ -1,4 +1,4 @@
-// * v2020.9.17
+// * v2020.10.9
 
 const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
@@ -7,17 +7,16 @@ module.exports = class rng extends Command {
     constructor (client) {
         super(client, {
             name: 'rng',
-            alias: ['RanInt'],
             group: 'utility',
             memberName: 'rng',
-            description: 'Random Number Generator! Generate Random Number **`<begin>..<end>`**',
+            description: 'Random Number Generator!',
             throttling: {
-                usages: 5,
-                duration: 20
+                usages: 3,
+                duration: 30
             },
             args: [
                 {
-                    key: 'args',
+                    key: 'arg',
                     prompt: 'Number Range? Syntax: **`<begin>..<end>`**)',
                     type: 'string',
                     validate: range => /^\d+\.\.\d+$/.test(range)
@@ -25,9 +24,8 @@ module.exports = class rng extends Command {
             ]
         });
     }
-    run (message, { range }) {
-        let begin = parseInt(range.split('..')[0]);
-        let end = parseInt(range.split('..')[1]);
+    run (message, { arg }) {
+        let [begin, end] = parseInt(arg.split('..'));
         if (begin == end) {
             return message.say(`Wait a second... You think you can fool me? The random number will always be ${begin}!`);
         }
@@ -38,7 +36,16 @@ module.exports = class rng extends Command {
             setTimestamp().
             setColor('#ff0000').
             setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true })).
-            setTitle(Math.floor(Math.random() * (end - begin + 1)) + begin)
+            setTitle(toEmoji(Math.floor(Math.random() * (end - begin + 1)) + begin))
         );
     }
 };
+
+function toEmoji (s) {
+    let title;
+    const emoji = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
+    for (const c in toString(s)) {
+        title += emoji[c];
+    }
+    return title;
+}
