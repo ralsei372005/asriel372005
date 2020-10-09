@@ -46,7 +46,7 @@ function toEmoji (s) {
     let title;
     const emoji = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
     for (const c of toString(s)) {
-        title += emoji[parseInt(c)];
+        title = String(title) + emoji[parseInt(c)];
     }
     return title;
 }
