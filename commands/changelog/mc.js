@@ -24,7 +24,7 @@ module.exports = class mc extends Command {
             setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true })).
             setImage('https://i.imgur.com/sH4O8ci.png').
             setTitle('Minecraft: Java Edition - 1.17').
-            setDescription('')
+            setURL('https://www.minecraft.net/en-us/article/minecraft-live-the-recap')
         );
     }
 };

@@ -1,4 +1,4 @@
-// * v2020.9.17
+// * v2020.10.9
 
 const { Command } = require('discord.js-commando');
 
@@ -19,19 +19,18 @@ module.exports = class del extends Command {
             userPermissions: ['MANAGE_MESSAGES'],
             args: [
                 {
-                    key: 'int',
-                    prompt: 'Number Of Messages To Bulk Delete?',
+                    key: 'arg',
+                    prompt: 'Bulk Delete Range?',
                     type: 'integer',
-                    validate: int => int > 0
+                    validate: arg => arg > 0
                 }
             ]
         });
     }
-    run (message, { int }) {
-        int++;
-        if (int > 100) {
-            int = 100;
+    run (message, { arg }) {
+        if (arg > 100) {
+            arg = 100;
         }
-        message.channel.bulkDelete(int, true);
+        message.channel.bulkDelete(arg, true);
     }
 };
