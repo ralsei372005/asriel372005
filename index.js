@@ -17,9 +17,10 @@ client.on('ready', () => {
 client.registry.
     registerDefaultTypes().
     registerGroups([
-        ['utility', 'Utilities!'],
         ['changelog', 'Version & Change Log!'],
-        ['moderation', 'Moderations Commands!']
+        ['game', 'Games!'],
+        ['moderation', 'Moderations Commands!'],
+        ['utility', 'Utilities!']
     ]).
     registerDefaultGroups().
     registerDefaultCommands().
