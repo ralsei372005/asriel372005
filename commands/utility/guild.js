@@ -23,7 +23,7 @@ module.exports = class guild extends Command {
             setTimestamp().
             setColor('#ff0000').
             setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true, size: 4096 })).
-            setImage(message.guild.iconURL({ format: 'png', dynamic: true })).
+            setImage(message.guild.iconURL({ format: 'png', dynamic: true, size: 4096 })).
             setTitle(message.guild.name).
             addFields(
                 {
