@@ -37,16 +37,11 @@ module.exports = class rng extends Command {
             setTimestamp().
             setColor('#ff0000').
             setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true })).
-            setTitle(toEmoji(Math.floor(Math.random() * (end - begin + 1)) + begin))
+            setTitle(Math.floor(Math.random() * (end - begin + 1)) + begin)
         );
     }
 };
 
-function toEmoji (s) {
-    let title;
-    const emoji = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
-    for (const c of toString(s)) {
-        title = String(title) + emoji[parseInt(c)];
-    }
-    return title;
-}
+// function toEmoji (s) {
+//     const emoji = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
+// }
