@@ -1,6 +1,7 @@
 // * v2020.10.9
 
 const { Command } = require('discord.js-commando');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class pfp extends Command {
     constructor (client) {
@@ -33,6 +34,10 @@ module.exports = class pfp extends Command {
         if (!arg) {
             return message.channel.send('Member Not Found.');
         }
-        message.say(arg.user.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 }));
+        message.say(new MessageEmbed().
+            setTimestamp().
+            setColor('#ff0000').
+            setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true })).setImage(arg.user.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 }))
+        );
     }
 };
