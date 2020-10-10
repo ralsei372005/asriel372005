@@ -31,7 +31,7 @@ module.exports = class user extends Command {
         if (!arg) {
             arg = message.member;
         } else {
-            arg = message.mentions.members.first() || message.guild.members.cache.find($member => $member.displayName.toLowerCase().startsWith(arg.toLowerCase()) || $member.user.tag.toLowerCase.startsWith(arg.toLowerCase()));
+            arg = message.mentions.members.first() || message.guild.members.cache.find(member => member.displayName.toLowerCase().startsWith(arg.toLowerCase()) || member.user.tag.toLowerCase().startsWith(arg.toLowerCase()));
         }
         if (!arg) {
             return message.channel.send('Member Not Found.');
