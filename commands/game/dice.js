@@ -1,4 +1,4 @@
-//* v2020.10.9
+//* v2020.10.10
 
 const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
@@ -22,7 +22,7 @@ module.exports = class dice extends Command {
             setTimestamp().
             setColor('#ff0000').
             setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true })).
-            setTitle(['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣'][Math.floor(Math.random() * 6)])
+            setTitle(['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣'][0 | 6 * Math.random()])
         );
     }
 };

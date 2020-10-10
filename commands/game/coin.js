@@ -1,4 +1,4 @@
-//* v2020.10.9
+//* v2020.10.10
 
 const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
@@ -22,7 +22,7 @@ module.exports = class coin extends Command {
             setTimestamp().
             setColor('#ff0000').
             setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true })).
-            setTitle(Math.random() < 0.5 ? 'Heads!' : 'Tails!')
+            setTitle(['Heads!', 'Tails!'][0 | 2 * Math.random()])
         );
     }
 };

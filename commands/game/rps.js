@@ -1,4 +1,4 @@
-//* v2020.10.9
+//* v2020.10.10
 
 const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
@@ -21,7 +21,7 @@ module.exports = class rps extends Command {
             setTimestamp().
             setColor('#ff0000').
             setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true })).
-            setTitle(['Rock!', 'Paper!', 'Scissors!' ][Math.floor(Math.random() * 3)])
+            setTitle(['Rock!', 'Paper!', 'Scissors!' ][0 | 3 * Math.random()])
         );
     }
 };

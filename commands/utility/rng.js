@@ -1,4 +1,4 @@
-// * v2020.10.9
+// * v2020.10.10
 
 const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
@@ -37,11 +37,7 @@ module.exports = class rng extends Command {
             setTimestamp().
             setColor('#ff0000').
             setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true })).
-            setTitle(Math.floor(Math.random() * (end - begin + 1)) + begin)
+            setTitle((0 | (end - begin + 1) * Math.random() + begin).toString().split(), x => ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'][x]).join('')
         );
     }
 };
-
-// function toEmoji (s) {
-//     const emoji = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
-// }
