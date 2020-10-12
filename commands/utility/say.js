@@ -11,8 +11,8 @@ module.exports = class say extends Command {
             memberName: 'say',
             description: 'Say a message & I will say it!',
             throttling: {
-                usages: 3,
-                duration: 30
+                usages: 10,
+                duration: 60
             },
             args: [
                 {

@@ -11,8 +11,8 @@ module.exports = class rps extends Command {
             memberName: 'rps',
             description: 'Rock Paper Scissor!',
             throttling: {
-                usages: 3,
-                duration: 30
+                usages: 10,
+                duration: 60
             }
         });
     }

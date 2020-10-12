@@ -12,8 +12,8 @@ module.exports = class dice extends Command {
             memberName: 'dice',
             description: 'Roll a dice!',
             throttling: {
-                usages: 3,
-                duration: 30
+                usages: 10,
+                duration: 60
             }
         });
     }

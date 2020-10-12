@@ -12,8 +12,8 @@ module.exports = class coin extends Command {
             memberName: 'coin',
             description: 'Flip a coin!',
             throttling: {
-                usages: 3,
-                duration: 30
+                usages: 10,
+                duration: 60
             }
         });
     }

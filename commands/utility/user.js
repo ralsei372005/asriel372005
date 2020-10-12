@@ -12,8 +12,8 @@ module.exports = class user extends Command {
             memberName: 'member',
             description: 'User & Member Infomation!',
             throttling: {
-                usages: 3,
-                duration: 30
+                usages: 10,
+                duration: 60
             },
             guildOnly: true,
             args: [

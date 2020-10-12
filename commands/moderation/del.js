@@ -11,8 +11,8 @@ module.exports = class del extends Command {
             memberName: 'del',
             description: 'Bulk Delete Messages',
             throttling: {
-                usages: 2,
-                duration: 10
+                usages: 10,
+                duration: 60
             },
             guildOnly: true,
             clientPermissions: ['MANAGE_MESSAGES'],
