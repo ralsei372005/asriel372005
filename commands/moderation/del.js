@@ -1,4 +1,4 @@
-// * v2020.10.10
+// * v2020.10.13
 
 const { Command } = require('discord.js-commando');
 

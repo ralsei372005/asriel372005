@@ -1,4 +1,4 @@
-// * v2020.10.10
+// * v2020.10.13
 
 const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
@@ -19,7 +19,7 @@ module.exports = class rng extends Command {
                     key: 'arg',
                     prompt: 'Number Range? Syntax: **`<begin>..<end>`**)',
                     type: 'string',
-                    validate: range => /^\d+\.\.\d+$/.test(range)
+                    validate: range => /^-?\d+\.\.-?\d+$/.test(range)
                 }
             ]
         });
@@ -37,7 +37,7 @@ module.exports = class rng extends Command {
             setTimestamp().
             setColor('#ff0000').
             setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true })).
-            setTitle(Array.from((0 | (end - begin + 1) * Math.random() + begin).toString().split(''), x => ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'][x]).join(''))
+            setTitle(Array.from((0 | (end - begin + 1) * Math.random() + begin).toString().split(''), x => ({ '-': '⛔', '0': '0️⃣', '1': '1️⃣', '2': '2️⃣', '3': '3️⃣', '4': '4️⃣', '5': '5️⃣', '6': '6️⃣', '7': '7️⃣', '8': '8️⃣', '9': '9️⃣' })[x]).join(''))
         );
     }
 };
