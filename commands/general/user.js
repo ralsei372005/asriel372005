@@ -1,16 +1,14 @@
-// * v2020.10.13
-
-const { Command } = require('discord.js-commando');
-const { MessageEmbed } = require('discord.js');
+const {Command} = require("discord.js-commando");
+const {MessageEmbed} = require("discord.js");
 
 module.exports = class user extends Command {
     constructor (client) {
         super (client, {
-            name: 'user',
-            aliases: ['member'],
-            group: 'utility',
-            memberName: 'member',
-            description: 'User & Member Infomation!',
+            name: "user",
+            aliases: ["member"],
+            group: "general",
+            memberName: "member",
+            description: "User & Member Infomation!",
             throttling: {
                 usages: 10,
                 duration: 60
@@ -18,60 +16,60 @@ module.exports = class user extends Command {
             guildOnly: true,
             args: [
                 {
-                    key: 'arg',
-                    prompt: '',
-                    type: 'string',
-                    default: ''
+                    key: "arg",
+                    prompt: "",
+                    type: "string",
+                    default: ""
                 }
             ]
 
         });
     }
-    run (message, { arg }) {
+    run (message, {arg}) {
         if (!arg) {
             arg = message.member;
         } else {
             arg = message.mentions.members.first() || message.guild.members.cache.find(member => member.displayName.toLowerCase().startsWith(arg.toLowerCase()) || member.user.tag.toLowerCase().startsWith(arg.toLowerCase()));
         }
         if (!arg) {
-            return message.channel.send('Member Not Found.');
+            return message.channel.send("Member Not Found.");
         }
         message.say(new MessageEmbed().
             setTimestamp().
-            setColor('#ff0000').
-            setAuthor(message.author.tag, message.author.avatarURL({ format: 'png', dynamic: true })).
-            setThumbnail(arg.user.avatarURL({ format: 'png', dynamic: true })).
+            setColor("#ff0000").
+            setAuthor(message.author.tag, message.author.avatarURL({format: "png", dynamic: true})).
+            setThumbnail(arg.user.avatarURL({format: "png", dynamic: true})).
             setTitle(arg.user.tag).
             addFields(
                 {
-                    name: 'Nickname: ',
+                    name: "Nickname: ",
                     value: arg.displayName,
                     inline: true
                 },
                 {
-                    name: 'Joined on: ',
-                    value: Intl.DateTimeFormat('utc').format(arg.joinedAt),
+                    name: "Joined on: ",
+                    value: Intl.DateTimeFormat("utc").format(arg.joinedAt),
                     inline: true
                 },
                 {
-                    name: 'Roles: ',
+                    name: "Roles: ",
                     value: arg.roles.cache.
-                        filter(role => role.id !== message.guild.id).
+                        filter(role => role.id != message.guild.id).
                         map(role => role).
-                        join(' ') || 'none'
+                        join(" ") || "none"
                 },
                 {
-                    name: 'Username:',
+                    name: "Username:",
                     value: arg.user.tag,
                     inline: true
                 },
                 {
-                    name: 'Created on:',
-                    value: Intl.DateTimeFormat('utc').format(arg.user.createdAt),
+                    name: "Created on:",
+                    value: Intl.DateTimeFormat("utc").format(arg.user.createdAt),
                     inline: true
                 },
                 {
-                    name: 'ID:',
+                    name: "ID:",
                     value: arg.user.id
                 }
             )
