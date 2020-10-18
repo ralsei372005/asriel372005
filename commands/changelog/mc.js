@@ -9,10 +9,7 @@ module.exports = class mc extends Command {
             group: "changelog",
             memberName: "mc",
             description: "Minecraft: Java Edition - 1.17!",
-            throttling: {
-                usages: 1,
-                duration: 3600
-            }
+            throttling: {usages: 1, duration: 3600}
         });
     }
     run (message) {

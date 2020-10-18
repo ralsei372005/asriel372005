@@ -2,10 +2,7 @@
 	"extends": "eslint:recommended",
 	"env": {
 		"node": true,
-		"es6": true
-	},
-	"parserOptions": {
-		"ecmaVersion": 2020
+		"es2021": true
 	},
 	"rules": {
 		"brace-style": "error",

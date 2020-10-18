@@ -9,10 +9,7 @@ module.exports = class guild extends Command {
             group: "general",
             memberName: "guild",
             description: "Server Infomation!",
-            throttling: {
-                usages: 1,
-                duration: 3600
-            },
+            throttling: {usages: 1, duration: 3600},
             guildOnly: true
         });
     }
@@ -23,34 +20,28 @@ module.exports = class guild extends Command {
             setAuthor(message.author.tag, message.author.avatarURL({format: "png", dynamic: true, size: 4096})).
             setImage(message.guild.iconURL({format: "png", dynamic: true, size: 4096})).
             setTitle(message.guild.name).
-            addFields(
-                {
-                    name: "Owner:",
-                    value: message.guild.owner,
-                    inline: true
-                },
-                {
-                    name: "Members:",
-                    value: message.guild.memberCount,
-                    inline: true
-                },
-                {
-                    name: "Created on:",
-                    value: Intl.DateTimeFormat("utc").format(message.guild.createdAt),
-                    inline: true
-                },
-                {
-                    name: "ID:",
-                    value: message.guild.id
-                },
-                {
-                    name: "Roles:",
-                    value: message.guild.roles.cache.
-                        filter(role => role.id != message.guild.id).
-                        map(role => role).
-                        join(" ") || "none"
-                }
-            )
+            addFields({
+                name: "Owner:",
+                value: message.guild.owner,
+                inline: true
+            }, {
+                name: "Members:",
+                value: message.guild.memberCount,
+                inline: true
+            }, {
+                name: "Created on:",
+                value: Intl.DateTimeFormat("utc").format(message.guild.createdAt),
+                inline: true
+            }, {
+                name: "ID:",
+                value: message.guild.id
+            }, {
+                name: "Roles:",
+                value: message.guild.roles.cache.
+                    filter(role => role.id != message.guild.id).
+                    map(role => role).
+                    join(" ") || "none"
+            })
         );
     }
 };

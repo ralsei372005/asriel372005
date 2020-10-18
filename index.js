@@ -17,9 +17,9 @@ client.on("ready", () => {
 client.registry.
     registerDefaultTypes().
     registerGroups([
-        ["changelog", "Version & Change Log!"],
+        ["admin", "Admin Commands"],
         ["general", "General Commands!"],
-        ["moderation", "Moderation Commands!"]
+        ["changelog", "Version & Change Log!"]
     ]).
     registerDefaultGroups().
     registerDefaultCommands().

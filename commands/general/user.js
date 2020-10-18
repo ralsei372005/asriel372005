@@ -9,19 +9,14 @@ module.exports = class user extends Command {
             group: "general",
             memberName: "member",
             description: "User & Member Infomation!",
-            throttling: {
-                usages: 10,
-                duration: 60
-            },
+            throttling: {usages: 10, duration: 60},
             guildOnly: true,
-            args: [
-                {
-                    key: "arg",
-                    prompt: "",
-                    type: "string",
-                    default: ""
-                }
-            ]
+            args: [{
+                key: "arg",
+                prompt: "",
+                type: "string",
+                default: ""
+            }]
 
         });
     }
@@ -40,39 +35,32 @@ module.exports = class user extends Command {
             setAuthor(message.author.tag, message.author.avatarURL({format: "png", dynamic: true})).
             setThumbnail(arg.user.avatarURL({format: "png", dynamic: true})).
             setTitle(arg.user.tag).
-            addFields(
-                {
-                    name: "Nickname: ",
-                    value: arg.displayName,
-                    inline: true
-                },
-                {
-                    name: "Joined on: ",
-                    value: Intl.DateTimeFormat("utc").format(arg.joinedAt),
-                    inline: true
-                },
-                {
-                    name: "Roles: ",
-                    value: arg.roles.cache.
-                        filter(role => role.id != message.guild.id).
-                        map(role => role).
-                        join(" ") || "none"
-                },
-                {
-                    name: "Username:",
-                    value: arg.user.tag,
-                    inline: true
-                },
-                {
-                    name: "Created on:",
-                    value: Intl.DateTimeFormat("utc").format(arg.user.createdAt),
-                    inline: true
-                },
-                {
-                    name: "ID:",
-                    value: arg.user.id
-                }
-            )
+            addFields({
+                name: "Nickname: ",
+                value: arg.displayName,
+                inline: true
+            }, {
+                name: "Joined on: ",
+                value: Intl.DateTimeFormat("utc").format(arg.joinedAt),
+                inline: true
+            }, {
+                name: "Roles: ",
+                value: arg.roles.cache.
+                    filter(role => role.id != message.guild.id).
+                    map(role => role).
+                    join(" ") || "none"
+            }, {
+                name: "Username:",
+                value: arg.user.tag,
+                inline: true
+            }, {
+                name: "Created on:",
+                value: Intl.DateTimeFormat("utc").format(arg.user.createdAt),
+                inline: true
+            }, {
+                name: "ID:",
+                value: arg.user.id
+            })
         );
     }
 };

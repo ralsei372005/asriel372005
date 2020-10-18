@@ -4,25 +4,19 @@ module.exports = class del extends Command {
     constructor (client) {
         super (client, {
             name: "del",
-            aliases: ["delete", "clear"],
-            group: "moderation",
+            group: "admin",
             memberName: "del",
-            description: "Bulk Delete Messages",
-            throttling: {
-                usages: 10,
-                duration: 60
-            },
+            description: "Bulk Delete <Integer> Messages",
+            throttling: {usages: 10, duration: 60},
             guildOnly: true,
             clientPermissions: ["MANAGE_MESSAGES"],
             userPermissions: ["MANAGE_MESSAGES"],
-            args: [
-                {
-                    key: "arg",
-                    prompt: "Bulk Delete Range?",
-                    type: "integer",
-                    validate: arg => arg > 0
-                }
-            ]
+            args: [{
+                key: "arg",
+                prompt: "Bulk Delete <Integer> Messages",
+                type: "integer",
+                validate: arg => arg > 0
+            }]
         });
     }
     run (message, {arg}) {

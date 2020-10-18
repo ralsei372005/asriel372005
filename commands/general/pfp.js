@@ -8,19 +8,14 @@ module.exports = class pfp extends Command {
             group: "general",
             memberName: "pfp",
             description: "Profile Picture!",
-            throttling: {
-                usages: 10,
-                duration: 60
-            },
+            throttling: {usages: 10, duration: 60},
             guildOnly: true,
-            args: [
-                {
-                    key: "arg",
-                    prompt: "",
-                    type: "string",
-                    default: ""
-                }
-            ]
+            args: [{
+                key: "arg",
+                prompt: "",
+                type: "string",
+                default: ""
+            }]
         });
     }
     run (message, {arg}) {
