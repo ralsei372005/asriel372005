@@ -19,24 +19,22 @@ module.exports = class rng extends Command {
     }
     run (message, {arg}) {
         const emoji = {
-            0: ":zero:",
-            1: ":one:",
-            2: ":two:",
-            3: ":three:",
-            4: ":four:",
-            5: ":five:",
-            6: ":six:",
-            7: ":seven:",
-            8: ":eight:",
-            9: ":nine:",
-            "-": ":no_entry"
+            "0": ":zero:",
+            "1": ":one:",
+            "2": ":two:",
+            "3": ":three:",
+            "4": ":four:",
+            "5": ":five:",
+            "6": ":six:",
+            "7": ":seven:",
+            "8": ":eight:",
+            "9": ":nine:",
+            "-": ":no_entry:"
         };
-        const args = arg.split("..");
-        const begin = args[0];
-        const end = args[1];
-        const diff = BigInt(end) - BigInt(begin);
-        const rand = Array.from(new Array((diff + "").length), () => (0 | 9 * Math.random()) + "").join("");
-        const result = BigInt(rand) % (diff + 1n) + BigInt(begin) + "";
+        const begin = BigInt(arg.split("..")[0]);
+        const end = BigInt(arg.split("..")[1]);
+        const rand = Array.from(new Array(`${end - begin}`.length), () => `${0 | 9 * Math.random()}`).join("");
+        const result = `${BigInt(rand) % (end - begin + 1n) + begin}`;
         const output = Array.from(result, x => emoji[x]).join("");
         message.say(new MessageEmbed().
             setTimestamp().
