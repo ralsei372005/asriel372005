@@ -35,24 +35,21 @@ module.exports = class rng extends Command {
         const end = BigInt(arg.split("..")[1]);
         const rand = Array.from(new Array(`${end - begin}`.length), () => `${0 | 9 * Math.random()}`).join("");
         const result = `${BigInt(rand) % (end - begin + 1n) + begin}`;
-        const output = Array.from(result, x => emoji[x]).join("");
-        if (output.length <= 256) {
+        const output = Array.from(result, x => emoji[x]);
+        if (output.join("").length <= 256) {
             message.say(new MessageEmbed().
                 setTimestamp().
                 setColor("#ff0000").
                 setAuthor(message.author.tag, message.author.avatarURL({format: "png", dynamic: true})).
                 setTitle(output)
             );
-        } else if (output.length <= 2048) {
+        } else if (output.join("").length <= 2048) {
             message.say(new MessageEmbed().
                 setTimestamp().
                 setColor("#ff0000").
                 setAuthor(message.author.tag, message.author.avatarURL({format: "png", dynamic: true})).
                 setDescription(output)
             );
-        } else {
-            message.channel.send(output, {split: true});
         }
     }
 };
-
