@@ -41,14 +41,14 @@ module.exports = class rng extends Command {
                 setTimestamp().
                 setColor("#ff0000").
                 setAuthor(message.author.tag, message.author.avatarURL({format: "png", dynamic: true})).
-                setTitle(output)
+                setTitle(output.join(""))
             );
         } else if (output.join("").length <= 2048) {
             message.say(new MessageEmbed().
                 setTimestamp().
                 setColor("#ff0000").
                 setAuthor(message.author.tag, message.author.avatarURL({format: "png", dynamic: true})).
-                setDescription(output)
+                setDescription(output.join(""))
             );
         }
     }
