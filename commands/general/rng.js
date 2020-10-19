@@ -51,7 +51,7 @@ module.exports = class rng extends Command {
                 setDescription(output)
             );
         } else {
-            message.say(output, {split: true});
+            message.channel.send(output, {split: true});
         }
     }
 };
