@@ -36,11 +36,23 @@ module.exports = class rng extends Command {
         const rand = Array.from(new Array(`${end - begin}`.length), () => `${0 | 9 * Math.random()}`).join("");
         const result = `${BigInt(rand) % (end - begin + 1n) + begin}`;
         const output = Array.from(result, x => emoji[x]).join("");
-        message.say(new MessageEmbed().
-            setTimestamp().
-            setColor("#ff0000").
-            setAuthor(message.author.tag, message.author.avatarURL({format: "png", dynamic: true})).setTitle(output)
-        );
+        if (output.length <= 256) {
+            message.say(new MessageEmbed().
+                setTimestamp().
+                setColor("#ff0000").
+                setAuthor(message.author.tag, message.author.avatarURL({format: "png", dynamic: true})).
+                setTitle(output)
+            );
+        } else if (output.length <= 2048) {
+            message.say(new MessageEmbed().
+                setTimestamp().
+                setColor("#ff0000").
+                setAuthor(message.author.tag, message.author.avatarURL({format: "png", dynamic: true})).
+                setDescription(output)
+            );
+        } else {
+            message.say(output, {split: true});
+        }
     }
 };
 
