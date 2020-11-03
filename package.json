@@ -3,9 +3,6 @@
 	"version": "2020.10.8",
 	"description": "hiccup372005's Discord Bot",
 	"main": "index.js",
-	"scripts": {
-		"start": "node ."
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/hiccup372005/toothless372005.git"
