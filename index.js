@@ -7,7 +7,7 @@ const client = new CommandoClient({
 	owner: '379643682984296448',
 });
 
-client.login(process.env.TOKEN);
+client.login();
 
 client.on('ready', () => {
 	console.log('ready');
