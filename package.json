@@ -1,6 +1,6 @@
 {
 	"name": "toothless372005",
-	"version": "2020.10.8",
+	"version": "2020.11.5",
 	"description": "hiccup372005's Discord Bot",
 	"main": "index.js",
 	"repository": {
@@ -14,7 +14,7 @@
 	},
 	"homepage": "https://github.com/hiccup372005/toothless372005#readme",
 	"dependencies": {
-		"discord.js": "^12.3.1",
+		"discord.js": "^12.4.1",
 		"discord.js-commando": "github:discordjs/commando"
 	}
 }
