@@ -8,7 +8,7 @@ module.exports = class guild extends Command {
 			aliases: ["guild"],
 			group: "general",
 			memberName: "guild",
-			description: "Server Infomation!",
+			description: "Server Infomation",
 			throttling: { usages: 1, duration: 3600 },
 			guildOnly: true
 		});

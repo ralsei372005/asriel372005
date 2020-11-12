@@ -7,7 +7,7 @@ module.exports = class rng extends Command {
 			name: "rng",
 			group: "general",
 			memberName: "rng",
-			description: "Random Number Generator!",
+			description: "Random Number Generator",
 			throttling: { usages: 10, duration: 60 },
 			args: [{
 				key: "arg",
