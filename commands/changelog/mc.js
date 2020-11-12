@@ -17,13 +17,13 @@ module.exports = class mc extends Command {
 			.setTimestamp()
 			.setColor("#ff0000")
 			.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: "png", dynamic: true }))
-			.setImage("https://i.imgur.com/sH4O8ci.png")
+			.setImage("https://i.imgur.com/a73wKYQ.png")
 			.setURL("https://minecraft.net/article/minecraft-snapshot-20w46a")
 			.setTitle("Minecraft: Java Edition - Snapshot 20w46a")
 			.addFields(
 				{
 					name: "New features",
-					value: ":snowflake: Powder snow\n\tPowder Snow is a trap block that causes any entity that walks into it to sink in it\n\tWear leather boots to prevent yourself from sinking into powder snow blocks\n\tLeave a cauldron outside in falling snow and it will fill with powder snow\n:cold_face: Freezing\n\tStanding in powder snow will slowly freeze an entity\n\tOnce frozen, freeze damage is done every few seconds to the frozen entity\n\tEach piece of leather armor worn causes an entity to freeze more slowly"
+					value: ":snowflake: Powder snow\n- Powder Snow is a trap block that causes any entity that walks into it to sink in it\n- Wear leather boots to prevent yourself from sinking into powder snow blocks\n- Leave a cauldron outside in falling snow and it will fill with powder snow\n:cold_face: Freezing\n- Standing in powder snow will slowly freeze an entity\n- Once frozen, freeze damage is done every few seconds to the frozen entity\n- Each piece of leather armor worn causes an entity to freeze more slowly"
 				},
 				{
 					name: "Changes",
