@@ -8,7 +8,7 @@ module.exports = class user extends Command {
 			aliases: ["member"],
 			group: "general",
 			memberName: "member",
-			description: "User & Member Infomation!",
+			description: "User & Member Infomation",
 			throttling: { usages: 10, duration: 60 },
 			guildOnly: true,
 			args: [{

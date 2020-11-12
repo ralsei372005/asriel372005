@@ -7,7 +7,7 @@ module.exports = class pfp extends Command {
 			name: "pfp",
 			group: "general",
 			memberName: "pfp",
-			description: "Profile Picture!",
+			description: "Profile Picture",
 			throttling: { usages: 10, duration: 60 },
 			guildOnly: true,
 			args: [{
