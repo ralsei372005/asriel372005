@@ -1,20 +1,20 @@
 {
-	"name": "toothless372005",
-	"version": "2020.46",
-	"description": "hiccup372005's Discord Bot",
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/hiccup372005/toothless372005.git"
-	},
-	"author": "hiccup372005",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/hiccup372005/toothless372005/issues"
-	},
-	"homepage": "https://github.com/hiccup372005/toothless372005#readme",
-	"dependencies": {
-		"discord.js": "^12.5.1",
-		"discord.js-commando": "github:discordjs/commando"
-	}
+  "name": "toothless372005",
+  "version": "2021.1.11",
+  "description": "hiccup372005's Discord Bot",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiccup372005/toothless372005.git"
+  },
+  "author": "hiccup372005",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hiccup372005/toothless372005/issues"
+  },
+  "homepage": "https://github.com/hiccup372005/toothless372005#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "discord.js-commando": "github:discordjs/Commando"
+  }
 }
