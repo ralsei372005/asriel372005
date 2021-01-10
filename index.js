@@ -20,7 +20,8 @@ client.registry
 	.registerGroups([
 		['admin', 'Admin Commands'],
 		['general', 'General Commands!'],
-		['changelog', 'Version & Change Log!']
+		['changelog', 'Version & Change Log!'],
+		['reactionCollectors', '(Beta) Reaction Collectors']
 	])
 	.registerDefaultGroups()
 	.registerDefaultCommands()

@@ -1,14 +1,15 @@
 const { Command } = require('discord.js-commando');
-const { MessageEmbed } = require('discord.js');
+// eslint-disable-next-line capitalized-comments
+// const { MessageEmbed } = require('discord.js');
 
-module.exports = class reactionRole extends Command {
+module.exports = class basicReactionCollector extends Command {
 	constructor(client) {
 		super(client, {
-			name: 'reaction-role',
-			aliases: ['reaction_role', 'rr'],
-			group: 'reaction-role',
-			memberName: 'reaction_role',
-			description: 'Reaction Role',
+			name: 'basicReactionCollector',
+			aliases: ['rr1'],
+			group: 'reactionCollectors',
+			memberName: 'basicReactionCollector',
+			description: '(beta) Basic Reaction Collector',
 			throttling: { usages: 1, duration: 60 }
 		});
 	}
