@@ -16,14 +16,10 @@ module.exports = class awaitReactions extends Command {
 	run(message) {
 		const filter = (reaction, user) => reaction.emoji.name === '👍' && user.id === message.author.id;
 
-		const collector = message.createReactionCollector(filter, { time: 15000 });
-
-		collector.on('collect', (reaction, user) => {
-			console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
-		});
-
-		collector.on('end', collected => {
-			console.log(`Collected ${collected.size} items`);
-		});
+		message.awaitReactions(filter, { max: 4, time: 60000, errors: ['time'] })
+			.then(collected => console.log(collected.size))
+			.catch(collected => {
+				console.log(`After a minute, only ${collected.size} out of 4 reacted.`);
+			});
 	}
 };
