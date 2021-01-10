@@ -48,3 +48,5 @@ discordjs.on('messageReactionRemove', async(reaction, user) => {
 	if(reaction.emoji.name !== '🔔') return;
 	await reaction.message.guild.members.cache.get(user.id).roles.remove('794493582684979260');
 });
+// eslint-disable-next-line no-process-env
+discordjs.login(process.env.TOKEN);
