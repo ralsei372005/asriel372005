@@ -21,7 +21,7 @@ client.registry
 		['admin', 'Admin Commands'],
 		['general', 'General Commands!'],
 		['changelog', 'Version & Change Log!'],
-		['reactionCollectors', '(Beta) Reaction Collectors']
+		['reaction-collectors', '(Beta) Reaction Collectors']
 	])
 	.registerDefaultGroups()
 	.registerDefaultCommands()

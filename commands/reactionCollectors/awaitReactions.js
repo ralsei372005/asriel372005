@@ -5,10 +5,10 @@ const { Command } = require('discord.js-commando');
 module.exports = class awaitReactions extends Command {
 	constructor(client) {
 		super(client, {
-			name: 'awaitReactions',
+			name: 'await-reactions',
 			aliases: ['rr2'],
-			group: 'reactionCollectors',
-			memberName: 'awaitReactions',
+			group: 'reaction-collectors',
+			memberName: 'await-reactions',
 			description: '(beta) Await Reactions',
 			throttling: { usages: 1, duration: 60 }
 		});

@@ -5,10 +5,10 @@ const { Command } = require('discord.js-commando');
 module.exports = class basicReactionCollector extends Command {
 	constructor(client) {
 		super(client, {
-			name: 'basicReactionCollector',
+			name: 'basic-reaction-collector',
 			aliases: ['rr1'],
-			group: 'reactionCollectors',
-			memberName: 'basicReactionCollector',
+			group: 'reaction-collectors',
+			memberName: 'basic-reaction-collector',
 			description: '(beta) Basic Reaction Collector',
 			throttling: { usages: 1, duration: 60 }
 		});
