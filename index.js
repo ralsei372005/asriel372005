@@ -38,13 +38,13 @@ discordjs.on('messageReactionAdd', async(reaction, user) => {
 	if(reaction.message.partial) await reaction.message.fetch();
 	if(reaction.partial) await reaction.fetch();
 	if(reaction.message.channel.id !== '794501595677065256') return;
-	if(reaction.emoji.name === '🔔') return;
+	if(reaction.emoji.name !== '🔔') return;
 	await reaction.message.guild.members.cache.get(user.id).roles.add('794493582684979260');
 });
 discordjs.on('messageReactionRemove', async(reaction, user) => {
 	if(reaction.message.partial) await reaction.message.fetch();
 	if(reaction.partial) await reaction.fetch();
 	if(reaction.message.channel.id !== '794501595677065256') return;
-	if(reaction.emoji.name === '🔔') return;
+	if(reaction.emoji.name !== '🔔') return;
 	await reaction.message.guild.members.cache.get(user.id).roles.remove('794493582684979260');
 });
