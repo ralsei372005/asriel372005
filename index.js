@@ -1,4 +1,3 @@
-require('dotenv').config();
 const http = require('http');
 const path = require('path');
 const { CommandoClient } = require('discord.js-commando');

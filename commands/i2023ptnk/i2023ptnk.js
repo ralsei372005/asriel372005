@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { Client } = require('discord.js');
 const client = new Client({ partials: ['USER', 'CHANNEL', 'GUILD_MEMBER', 'MESSAGE', 'REACTION'] });
 client.on('messageReactionAdd', async(reaction, user) => {
