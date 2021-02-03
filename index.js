@@ -7,7 +7,6 @@ const client = new CommandoClient({
 	owner: '379643682984296448'
 });
 
-// eslint-disable-next-line no-process-env
 client.login(process.env.TOKEN);
 
 client.on('ready', () => {
