@@ -3,7 +3,7 @@ const path = require('path');
 const { CommandoClient } = require('discord.js-commando');
 
 const client = new CommandoClient({
-	commandPrefix: 't3',
+	commandPrefix: 'asriel',
 	owner: '379643682984296448'
 });
 
@@ -11,7 +11,7 @@ client.login(process.env.TOKEN);
 
 client.on('ready', () => {
 	console.log('ready');
-	client.user.setActivity("t3help | hiccup372005's Discord Bot");
+	client.user.setActivity("ralsei372005's Discord Bot");
 });
 
 client.registry
