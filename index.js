@@ -1,3 +1,4 @@
+require('dotenv').config();
 const http = require('http');
 const path = require('path');
 const { CommandoClient } = require('discord.js-commando');
@@ -10,8 +11,8 @@ const client = new CommandoClient({
 client.login(process.env.TOKEN);
 
 client.on('ready', () => {
-	console.log('ready');
-	client.user.setActivity("ralsei372005's Discord Bot");
+	console.log('Commando ✅');
+	client.user.setActivity("Ralsei372005's Discord Bot");
 });
 
 client.registry
@@ -29,3 +30,35 @@ http.createServer((_request, respond) => {
 	respond.writeHead(200);
 	respond.end('ok');
 }).listen(3000);
+
+const { Client } = require('discord.js');
+const discordjs = new Client();
+
+discordjs.login(process.env.TOKEN);
+
+discordjs.once('ready', () => {
+	console.log('Discord.js ✅');
+});
+
+client.on('presenceUpdate', (oldPresence, newPresence) => {
+    const member = newPresence.member;
+    if (member.id === '379643682984296448') {
+        if (oldPresence.status !== newPresence.status) {
+            const channel = member.guild.channels.cache.get('833542259294076940');
+			const status = newPresence.status;
+            switch(status){
+				case "online": channel.send("Ralsei372005 is online.");
+				case "idle":
+					const state = newPresence.activities[0].state;
+					const split = 'The power of Undertale & Deltarune OST shines within Hiccup372005. Profile picture from Deltarune.com';
+					const custom = state.split(split).join()
+					let text = "Ralsei is idle.";
+					if(custom){
+						text+=`\nStatus : ${custom}`;
+					}
+					channel.send(text);
+				case "offline":channel.send('Ralsei372005 is offline.');
+			}
+        }
+    }
+});
