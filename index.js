@@ -43,22 +43,21 @@ discordjs.once('ready', () => {
 client.on('presenceUpdate', (oldPresence, newPresence) => {
     const member = newPresence.member;
     if (member.id === '379643682984296448') {
-        if (!oldPresense||oldPresence.status !== newPresence.status) {
-            const channel = member.guild.channels.cache.get('833542259294076940');
-			const status = newPresence.status;
-            switch(status){
-				case "online": return channel.send("Ralsei372005 is online.");
-				case "idle":
-					const state = newPresence.activities[0].state;
-					const split = 'The power of Undertale & Deltarune OST shines within Hiccup372005. Profile picture from Deltarune.com';
-					const custom = state.split(split).join()
-					let text = "Ralsei372005 is idle.";
-					if(custom){
-						text+=`\nStatus : ${custom}`;
-					}
-					return channel.send(text);
-				case "offline": return channel.send('Ralsei372005 is offline.');
+        const channel = member.guild.channels.cache.get('833542259294076940');
+		const status = newPresence.status;
+        switch(status){
+			case "online": return channel.send("Ralsei372005 is online.");
+			case "idle":
+				const state = newPresence.activities[0].state;
+				const split = 'The power of Undertale & Deltarune OST shines within Hiccup372005. rofile picture from Deltarune.com';
+				const custom = state.split(split).join()
+				let text = "Ralsei372005 is idle.";
+				if(custom){
+					text+=`\nStatus : ${custom}`;
+				}
+				return channel.send(text);
+			case "offline": return channel.send('Ralsei372005 is offline.');
 			}
         }
     }
-});
+);
