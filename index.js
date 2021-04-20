@@ -47,17 +47,17 @@ client.on('presenceUpdate', (oldPresence, newPresence) => {
             const channel = member.guild.channels.cache.get('833542259294076940');
 			const status = newPresence.status;
             switch(status){
-				case "online": channel.send("Ralsei372005 is online.");
+				case "online": return channel.send("Ralsei372005 is online.");
 				case "idle":
 					const state = newPresence.activities[0].state;
 					const split = 'The power of Undertale & Deltarune OST shines within Hiccup372005. Profile picture from Deltarune.com';
 					const custom = state.split(split).join()
-					let text = "Ralsei is idle.";
+					let text = "Ralsei372005 is idle.";
 					if(custom){
 						text+=`\nStatus : ${custom}`;
 					}
-					channel.send(text);
-				case "offline":channel.send('Ralsei372005 is offline.');
+					return channel.send(text);
+				case "offline": return channel.send('Ralsei372005 is offline.');
 			}
         }
     }
