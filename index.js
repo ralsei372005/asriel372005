@@ -49,7 +49,7 @@ client.on('presenceUpdate', (oldPresence, newPresence) => {
 			case "online": return channel.send("Ralsei372005 is online.");
 			case "idle":
 				const state = newPresence.activities[0].state;
-				const split = 'The power of Undertale & Deltarune OST shines within Hiccup372005. rofile picture from Deltarune.com';
+				const split = 'The power of Undertale & Deltarune OST shines within Hiccup372005. Profile picture from Deltarune.com';
 				const custom = state.split(split).join()
 				let text = "Ralsei372005 is idle.";
 				if(custom){
