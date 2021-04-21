@@ -42,8 +42,9 @@ discordjs.once('ready', () => {
 
 client.on('presenceUpdate', (oldPresence, newPresence) => {
     const member = newPresence.member;
-    if (member.id === '379643682984296448') {
+    if (oldPresence&&member.id === '379643682984296448') {
         const channel = member.guild.channels.cache.get('833542259294076940');
+		if(oldPresence.status===newPresence.status)return;
 		const status = newPresence.status;
         switch(status){
 			case "online": return channel.send("Ralsei372005 is online.");
