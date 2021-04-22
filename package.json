@@ -1,18 +1,18 @@
 {
-  "name": "toothless372005",
-  "version": "2020.2.3",
-  "description": "hiccup372005's Discord Bot",
+  "name": "asriel372005",
+  "version": "2021.4.22",
+  "description": "ralsei372005's Discord Bot",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hiccup372005/toothless372005.git"
+    "url": "git+https://github.com/ralsei372005/asriel372005.git"
   },
   "author": "hiccup372005",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hiccup372005/toothless372005/issues"
+    "url": "https://github.com/ralsei372005/asriel372005/issues"
   },
-  "homepage": "https://github.com/hiccup372005/toothless372005#readme",
+  "homepage": "https://github.com//ralsei372005/asriel372005#readme",
   "dependencies": {
     "discord.js": "^12.5.1",
     "discord.js-commando": "github:discordjs/Commando",
