@@ -40,11 +40,9 @@ discordjs.once('ready', () => {
 	console.log('Discord.js ✅');
 });
 
-client.on('presenceUpdate', (oldPresence, newPresence) => {
-	if(newPresence.member.id !== '379643682984296448') return;
-	const channel = newPresence.member.guild.channels.cache.get('833542259294076940');
-	channel.send(`Ralsei372005 is ${newPresence.status}`);
-	if(newPresence.status=='offline')return;
-	if(newPresence.activities[0].state !== 'Profile Picture https://www.deltarune.com/assets/images/dr-stickers.png')channel.send(`Status: ${state.split('Profile Picture https://www.deltarune.com/assets/images/dr-stickers.png').join('')}`);
-	return;
+client.on('message', message => {
+	if(message.author.bot) return;
+	if(message.author.id !== '835498559272124426') return;
+	message.channel.send(`<@379643682984296448> ${message.content}`);
+	setTimeout(()=>message.delete(),10000);
 });
