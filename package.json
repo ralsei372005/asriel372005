@@ -1,21 +1,21 @@
 {
   "name": "asriel372005",
-  "version": "2021.4.22",
+  "version": "2021.4.25",
   "description": "ralsei372005's Discord Bot",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ralsei372005/asriel372005.git"
   },
-  "author": "hiccup372005",
+  "author": "ralsei372005",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ralsei372005/asriel372005/issues"
   },
-  "homepage": "https://github.com//ralsei372005/asriel372005#readme",
+  "homepage": "https://github.com/ralsei372005/asriel372005#readme",
   "dependencies": {
-    "discord.js": "^12.5.1",
-    "discord.js-commando": "github:discordjs/Commando",
+    "discord.js": "^12.5.3",
+    "discord.js-commando": "github:discordjs/commando",
     "dotenv": "^8.2.0"
   }
 }
