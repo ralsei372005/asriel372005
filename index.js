@@ -40,25 +40,10 @@ discordjs.once('ready', () => {
 	console.log('Discord.js ✅');
 });
 
-client.on('presenceUpdate', (oldPresence, newPresence) => {
-    const member = newPresence.member;
-    if (oldPresence&&member.id === '379643682984296448') {
-        const channel = member.guild.channels.cache.get('833542259294076940');
-		if(oldPresence.status===newPresence.status)return;
-		const status = newPresence.status;
-        switch(status){
-			case "online": return channel.send("Ralsei372005 is online.");
-			case "idle":
-				const state = newPresence.activities[0].state;
-				const split = 'The power of Undertale & Deltarune OST shines within Hiccup372005. Profile picture from Deltarune.com';
-				const custom = state.split(split).join()
-				let text = "Ralsei372005 is idle.";
-				if(custom){
-					text+=`\nStatus : ${custom}`;
-				}
-				return channel.send(text);
-			case "offline": return channel.send('Ralsei372005 is offline.');
-			}
-        }
-    }
-);
+client.on('presenceUpdate', (_oldPresence, newPresence) => {
+	if(newPresence.member.id !== '379643682984296448') return;
+	const channel = member.guild.channels.cache.get('833542259294076940');
+	channel.send(`Ralsei372005 is ${newPresence.status}`);
+	if(newPresence.activities[0].state !== 'Profile Picture https://www.deltarune.com/assets/images/dr-stickers.png')channel.send(`Status: ${state.split('Profile Picture https://www.deltarune.com/assets/images/dr-stickers.png').join('')}`);
+	return;
+});
