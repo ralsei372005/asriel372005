@@ -42,7 +42,7 @@ discordjs.once('ready', () => {
 
 client.on('presenceUpdate', (_oldPresence, newPresence) => {
 	if(newPresence.member.id !== '379643682984296448') return;
-	const channel = member.guild.channels.cache.get('833542259294076940');
+	const channel = newPresence.member.guild.channels.cache.get('833542259294076940');
 	channel.send(`Ralsei372005 is ${newPresence.status}`);
 	if(newPresence.activities[0].state !== 'Profile Picture https://www.deltarune.com/assets/images/dr-stickers.png')channel.send(`Status: ${state.split('Profile Picture https://www.deltarune.com/assets/images/dr-stickers.png').join('')}`);
 	return;
