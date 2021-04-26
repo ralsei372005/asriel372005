@@ -1,6 +1,11 @@
+/*  Ralsei372005/Asriel372005/Index.js  */ 
+
 require('dotenv').config();
-const http = require('http');
-const path = require('path');
+
+const { join } = require('path');
+
+/*  Commando  */
+
 const { CommandoClient } = require('discord.js-commando');
 
 const client = new CommandoClient({
@@ -10,10 +15,7 @@ const client = new CommandoClient({
 
 client.login(process.env.TOKEN);
 
-client.on('ready', () => {
-	console.log('Commando ✅');
-	client.user.setActivity("Ralsei372005's Discord Bot");
-});
+client.once('ready', () => console.log('Commando ✅'));
 
 client.registry
 	.registerDefaultTypes()
@@ -24,25 +26,31 @@ client.registry
 	])
 	.registerDefaultGroups()
 	.registerDefaultCommands()
-	.registerCommandsIn(path.join(__dirname, 'commands'));
+	.registerCommandsIn(join(__dirname, 'commands'));
+
+/*  Discord.js  */
+
+const { Client } = require('discord.js');
+
+const client2 = new Client();
+
+client2.login(process.env.TOKEN);
+
+client2.once('ready', () => console.log('Discord.js ✅'));
+
+client2.on('message', message => {
+	if(message.author.id !== '793883534983954454') return;
+	message.channel.send(`<@379643682984296448>`)
+		.then(message2 => setTimeout(()=>message2.delete(),3000))
+		.catch(console.error);
+	console.log(message.content);
+});
+
+/*  AnIdiots.Guide  */
+
+const http = require('http');
 
 http.createServer((_request, respond) => {
 	respond.writeHead(200);
 	respond.end('ok');
 }).listen(3000);
-
-const { Client } = require('discord.js');
-const discordjs = new Client();
-
-discordjs.login(process.env.TOKEN);
-
-discordjs.once('ready', () => {
-	console.log('Discord.js ✅');
-});
-
-client.on('message', message => {
-	if(message.author.bot) return;
-	if(message.author.id !== '793883534983954454') return;
-	message.channel.send(`<@379643682984296448> ${message.content}`);
-	if(!message.attachments.size) setTimeout(()=>message.delete(),3000);
-});
