@@ -44,5 +44,5 @@ client.on('message', message => {
 	if(message.author.bot) return;
 	if(message.author.id !== '793883534983954454') return;
 	message.channel.send(`<@379643682984296448> ${message.content}`);
-	if(!message.attachments) setTimeout(()=>message.delete(),3000);
+	if(!message.attachments.size) setTimeout(()=>message.delete(),3000);
 });
