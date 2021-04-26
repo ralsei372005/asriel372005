@@ -42,7 +42,7 @@ discordjs.once('ready', () => {
 
 client.on('message', message => {
 	if(message.author.bot) return;
-	if(message.author.id !== '835498559272124426') return;
+	if(message.author.id !== '793883534983954454') return;
 	message.channel.send(`<@379643682984296448> ${message.content}`);
 	setTimeout(()=>message.delete(),10000);
 });
