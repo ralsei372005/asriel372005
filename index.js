@@ -40,6 +40,7 @@ client2.once('ready', () => console.log('Discord.js ✅'));
 
 client2.on('message', message => {
 	if(message.author.id !== '793883534983954454') return;
+	if(message.channel.id !== '833688031315230721') return;
 	message.channel.send(`<@379643682984296448>`)
 		.then(message2 => setTimeout(()=>message2.delete(),3000))
 		.catch(console.error);
