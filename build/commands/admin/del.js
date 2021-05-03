@@ -1,5 +1,7 @@
-const { Command } = require('discord.js-commando');
-module.exports = class del extends Command {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const discord_js_commando_1 = require("discord.js-commando");
+module.exports = class del extends discord_js_commando_1.Command {
     constructor(client) {
         super(client, {
             name: 'del',
@@ -28,3 +30,4 @@ module.exports = class del extends Command {
         return true;
     }
 };
+//# sourceMappingURL=del.js.map
