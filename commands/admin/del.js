@@ -1,4 +1,4 @@
-const { Command } = require('discord.js-commando');
+import { Command } from 'discord.js-commando';
 module.exports = class del extends Command {
     constructor(client) {
         super(client, {
@@ -25,6 +25,6 @@ module.exports = class del extends Command {
             arg = 100;
         }
         message.channel.bulkDelete(arg, true);
-        return true;
+        return message.say(`Succcessfully deleted ${arg} message${arg === 1 ? '' : 's'}.`);
     }
 };
