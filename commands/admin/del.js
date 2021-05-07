@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando')
-
 module.exports = class del extends Command {
   constructor (client) {
     super(client, {
@@ -22,7 +21,6 @@ module.exports = class del extends Command {
       ]
     })
   }
-
   run (message, { arg }) {
     arg++
     if (arg > 100) arg = 100

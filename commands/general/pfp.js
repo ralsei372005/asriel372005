@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js')
 const { Command } = require('discord.js-commando')
-
 module.exports = class pfp extends Command {
   constructor (client) {
     super(client, {
@@ -19,7 +18,6 @@ module.exports = class pfp extends Command {
       ]
     })
   }
-
   run (message, { arg }) {
     if (!arg) {
       return message.say(new MessageEmbed()

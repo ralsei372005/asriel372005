@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js')
 const { Command } = require('discord.js-commando')
-
 module.exports = class v extends Command {
   constructor (client) {
     super(client, {
@@ -11,7 +10,6 @@ module.exports = class v extends Command {
       description: 'Asriel372005 Version'
     })
   }
-
   run (message) {
     return message.say(new MessageEmbed()
       .setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true }))
