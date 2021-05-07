@@ -8,13 +8,13 @@ module.exports = class v extends Command {
       aliases: ['ver', 'v'],
       group: 'version',
       memberName: 'v',
-      description: 'Bot Version and Developer'
+      description: 'Asriel372005 Version'
     })
   }
 
   run (message) {
     return message.channel.send(new MessageEmbed()
-      .setTitle(`Ralsei372005's Discord Bot\nAsriel372005 Version ${process.env.VERSION}\n`)
+      .setTitle(`Asriel372005 Version ${process.env.VERSION}\nRalsei372005's Discord Bot`)
     )
   }
 }

@@ -13,7 +13,8 @@ client.once('ready', () => console.log('Commando ✅'))
 client.registry
   .registerDefaultTypes()
   .registerGroups([
-    ['admin', 'Admin Commands']
+    ['admin', 'Admin Commands'],
+    ['version', 'Asriel372005 Version']
   ])
   .registerDefaultGroups()
   .registerDefaultCommands()
