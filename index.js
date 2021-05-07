@@ -2,9 +2,8 @@ const { CommandoClient } = require('discord.js-commando')
 const path = require('path')
 
 const client = new CommandoClient({
-  commandPrefix: '?',
-  owner: '278305350804045834',
-  invite: 'https://discord.gg/bRCvFy9'
+  commandPrefix: 'asriel',
+  owner: '379643682984296448'
 })
 
 client.login(process.env.TOKEN)
@@ -14,8 +13,7 @@ client.once('ready', () => console.log('Commando ✅'))
 client.registry
   .registerDefaultTypes()
   .registerGroups([
-    ['first', 'Your First Command Group'],
-    ['second', 'Your Second Command Group']
+    ['admin', 'Admin Commands']
   ])
   .registerDefaultGroups()
   .registerDefaultCommands()
