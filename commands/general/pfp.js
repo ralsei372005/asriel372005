@@ -25,7 +25,7 @@ module.exports = class pfp extends Command {
         .setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true }))
         .setColor('#00ff00')
         .setImage(message.author.displayAvatarURL({ format: 'png', dynamic: true }))
-        .setFooter('Ralsei372005\'s Discord Bot', 'https://i.imgur.com/caTM0vK.png')
+        .setFooter('Ralsei372005\'s Discord Bot', process.env.PFP)
         .setTimestamp()
       )
     }
@@ -35,7 +35,7 @@ module.exports = class pfp extends Command {
       .setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true }))
       .setColor('#00ff00')
       .setImage(user.displayAvatarURL({ format: 'png', dynamic: true }))
-      .setFooter('Ralsei372005\'s Discord Bot', 'https://i.imgur.com/caTM0vK.png')
+      .setFooter('Ralsei372005\'s Discord Bot', process.env.PFP)
       .setTimestamp()
     )
   }
