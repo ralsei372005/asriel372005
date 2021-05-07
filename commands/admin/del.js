@@ -3,7 +3,8 @@ const { Command } = require('discord.js-commando')
 module.exports = class del extends Command {
   constructor (client) {
     super(client, {
-      name: 'del',
+      name: 'delete',
+      aliases: ['del'],
       group: 'admin',
       memberName: 'del',
       description: 'Bulk Delete Messages',
