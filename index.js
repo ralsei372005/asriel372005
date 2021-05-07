@@ -8,7 +8,7 @@ const logger = winston.createLogger({
   transports: [
     new winston.transports.Console()
   ],
-  format: winston.format.printf(log => chalk.green(`[Ready] ${log.message}`))
+  format: winston.format.printf(log => chalk.green(log.message))
 })
 // Discord.js-Commando
 const { CommandoClient } = require('discord.js-commando')
