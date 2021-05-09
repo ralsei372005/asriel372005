@@ -1,3 +1,4 @@
+const config = require('../../config.json')
 const { MessageEmbed } = require('discord.js')
 const { Command } = require('discord.js-commando')
 module.exports = class pfp extends Command {
@@ -25,7 +26,7 @@ module.exports = class pfp extends Command {
         .setColor('#00ff00')
         .setTitle(`${message.author.tag}'s Profile Picture`)
         .setImage(message.author.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 }))
-        .setFooter('Ralsei372005\'s Discord Bot', process.env.PFP)
+        .setFooter('Ralsei372005\'s Discord Bot', config.pfp)
         .setTimestamp()
       )
     }
@@ -42,7 +43,7 @@ module.exports = class pfp extends Command {
         .setColor('#00ff00')
         .setTitle(`${member.user.tag}'s Profile Picture`)
         .setImage(member.user.displayAvatarURL({ format: 'png', dynamic: true, size: 4096 }))
-        .setFooter('Ralsei372005\'s Discord Bot', process.env.PFP)
+        .setFooter('Ralsei372005\'s Discord Bot', config.pfp)
         .setTimestamp()
       )
     }
