@@ -3,7 +3,6 @@ require('dotenv').config()
 const path = require('path')
 const chalk = require('chalk')
 const {version} = require('./package.json')
-const config = require('./config.json')
 // Winston
 const winston = require('winston')
 const logger = winston.createLogger({
@@ -30,15 +29,6 @@ client.registry
   .registerDefaultGroups()
   .registerDefaultCommands()
   .registerCommandsIn(path.join(__dirname, 'commands'))
-// Discord.js
-const { Client } = require('discord.js')
-const client2 = new Client()
-client2.login(process.env.TOKEN)
-client2.once('ready', () => logger.info('Discord.js ✅'))
-client2.on('message', message => {
-  if (message.author.id !== '793883534983954454' || message.channel.id === config.channel) return
-  message.channel.send('<@379643682984296448>').then(message2 => setTimeout(message2.delete(), 1000))
-})
 // http
 const http = require('http')
 http.createServer((_request, response) => {
