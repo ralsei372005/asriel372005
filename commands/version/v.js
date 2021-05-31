@@ -16,7 +16,7 @@ module.exports = class v extends Command {
     return message.say(new MessageEmbed()
       .setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true }))
       .setColor('#00ff00')
-      .setTitle(`Asriel372005 Version ${version}`)
+      .setTitle(`Asriel372005\nVersion ${version}`)
       .setURL('https://asriel372005.ralsei372005.repl.co')
       .setFooter('Ralsei372005\'s Discord Bot', config.pfp)
       .setTimestamp()

@@ -8,7 +8,6 @@ module.exports = class pfp extends Command {
       group: 'general',
       memberName: 'pfp',
       description: 'Profile Picture',
-      guildOnly: true,
       args: [
         {
           key: 'arg',
@@ -20,7 +19,7 @@ module.exports = class pfp extends Command {
     })
   }
   run (message, { arg }) {
-    if (!arg) {
+    if (!message.guild || !arg) {
       return message.say(new MessageEmbed()
         .setAuthor(message.author.tag, message.author.displayAvatarURL({ format: 'png', dynamic: true }))
         .setColor('#00ff00')
@@ -47,5 +46,6 @@ module.exports = class pfp extends Command {
         .setTimestamp()
       )
     }
+    return message.say(`No nickname/username starts with ${arg} found.`)
   }
 }

@@ -33,5 +33,5 @@ client.registry
 const http = require('http')
 http.createServer((_request, response) => {
   response.writeHead(200)
-  response.end(`Asriel372005 Version ${version}\nRalsei372005's Discord Bot`)
+  response.end(`Asriel372005\nVersion ${version}\nRalsei372005's Discord Bot\nChange Logs:\nUpdate pfp command to handle in DM`)
 }).listen(3000)
