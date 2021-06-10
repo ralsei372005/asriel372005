@@ -1,3 +1,4 @@
+require('dotenv').config();
 const {CommandoClient} = require('discord.js-commando');
 const path = require('path');
 
@@ -8,7 +9,7 @@ const client = new CommandoClient({
 
 client.registry
 	.registerDefaultTypes()
-	.registerGroups([require('./config.json')].groups)
+	.registerGroups(require('./config.json').groups)
 	.registerDefaultGroups()
 	.registerDefaultCommands()
 	.registerCommandsIn(path.join(__dirname, 'commands'));
