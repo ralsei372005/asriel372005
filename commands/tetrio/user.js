@@ -41,8 +41,8 @@ module.exports = class user extends Command {
 		}
 
 		const {data: {user, user: {league}}} = info;
-		const finalTime = records.data.records['40l'].record?.endcontext.finalTime;
-		const score = records.data.records.blitz.record?.endcontext.score;
+
+		const score = records.data.records.blitz.record && records.data.records.blitz.record.endcontext.score;
 		embed
 			.setTitle(username)
 			.setURL(`https://ch.tetr.io/u/${username}`)
@@ -59,11 +59,21 @@ module.exports = class user extends Command {
 				{name: 'Rank', value: ranks[league.rank], inline: true},
 				{name: 'Attack Per Minute', value: toEmojis(league.apm), inline: true},
 				{name: 'Pieces Per Second', value: toEmojis(league.pps), inline: true},
-				{name: 'Versus Score', value: toEmojis(league.vs), inline: true},
-				{name: '\u200B', value: 'RECORDS'},
-				{name: '40 Lines', value: toEmojis(`${(finalTime / 60000).toFixed(0)}:${finalTime % 60000 < 10000 ? '0' : ''}${(finalTime % 60000 / 1000).toFixed(3)}`), inline: true},
-				{name: 'Blitz', value: toEmojis(score), inline: true}
+				{name: 'Versus Score', value: toEmojis(league.vs), inline: true}
 			]);
+		if (records.data.records['40l'].record || records.data.records.blitz.record) {
+			embed.addField('\u200B', 'RECORDS');
+		}
+
+		if (records.data.records['40l'].record) {
+			const {data: {records: {'40l': {record: {endcontext: {finalTime}}}}}} = records;
+			embed.addField('40 Lines', toEmojis(`${(finalTime / 60000).toFixed(0)}:${finalTime % 60000 < 10000 ? '0' : ''}${(finalTime % 60000 / 1000).toFixed(3)}`), true);
+		}
+
+		if (records.data.records.blitz.record) {
+			embed.addField('Blitz', toEmojis(score), true);
+		}
+
 		message.say(embed);
 	}
 };
