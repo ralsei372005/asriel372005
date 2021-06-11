@@ -2,29 +2,30 @@ require('dotenv').config();
 const {version} = require('./package.json');
 const {commandPrefix, owner, groups} = require('./config.json');
 const {CommandoClient} = require('discord.js-commando');
-const path = require('path');
+const {join} = require('path');
+const {log} = console;
 
-const client = new CommandoClient({
+const {registry: {registerDefaultTypes, registerGroups, registerDefaultGroups, registerDefaultCommands, registerCommandsIn}, once, login, user: {setActivity}} = new CommandoClient({
 	commandPrefix,
 	owner
 });
 
-client.registry
-	.registerDefaultTypes()
-	.registerGroups(groups)
-	.registerDefaultGroups()
-	.registerDefaultCommands()
-	.registerCommandsIn(path.join(__dirname, 'commands'));
+registerDefaultTypes();
+registerGroups(groups);
+registerDefaultGroups();
+registerDefaultCommands();
+registerCommandsIn(join(__dirname, 'commands'));
 
-client.once('ready', () => {
-	console.log('✅');
-	client.user.setActivity(`ralsei372005's Discord Bot Version ${version}`);
+once('ready', () => {
+	log('✅');
+	setActivity(`ralsei372005's Discord Bot Version ${version}`);
 });
 
-client.login(process.env.token);
+login(process.env.token);
 
-const http = require('http');
-http.createServer((_request, response) => {
-	response.writeHead(200);
-	response.end(`ralsei372005's Discord Bot Version ${version}`);
+const {createServer} = require('http');
+createServer((_request, response) => {
+	const {writeHead, end} = response;
+	writeHead(200);
+	end(`ralsei372005's Discord Bot Version ${version}`);
 }).listen(3000);
