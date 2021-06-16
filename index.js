@@ -1,8 +1,11 @@
+const date = new Date();
+const [year, month, day, hour, minutes, seconds] = [date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()];
+
 require('dotenv').config();
 
 require('https').createServer((_request, response) => {
 	response.writeHead(200);
-	response.end(`ralsei372005's Discord Bot Version ${version}`);
+	response.end(`ralsei372005's Discord Bot Version ${version}\n${year}.${month}.${day} ${hour}:${minutes}:${seconds}`);
 }).listen(3000);
 
 const {version} = require('./package.json');
@@ -11,17 +14,18 @@ const {commandPrefix, owner, groups} = require('./config.json');
 const {CommandoClient} = require('discord.js-commando');
 const {join} = require('path');
 
-const {login, once, user: {setActivity}, registry: {registerDefaultTypes, registerGroups, registerDefaultGroups, registerDefaultCommands, registerCommandsIn}} = new CommandoClient({commandPrefix, owner});
+const client = new CommandoClient({commandPrefix, owner});
 
-login(process.env.token);
+client.login(process.env.token);
 
-once('ready', () => {
-	console.log(`ralsei372005's Discord Bot Version ${version}`);
-	setActivity(`ralsei372005's Discord Bot Version ${version}`);
+client.once('ready', () => {
+	console.log(`ralsei372005's Discord Bot Version ${version}\n${year}.${month}.${day} ${hour}:${minutes}:${seconds}`);
+	client.user.setActivity(`ralsei372005's Discord Bot Version ${version}`);
 });
 
-registerDefaultTypes();
-registerGroups(groups);
-registerDefaultGroups();
-registerDefaultCommands();
-registerCommandsIn(join(__dirname, './commands'));
+client.registry
+	.registerDefaultTypes()
+	.registerGroups(groups)
+	.registerDefaultGroups()
+	.registerDefaultCommands()
+	.registerCommandsIn(join(__dirname, './commands'));
