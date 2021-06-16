@@ -4,9 +4,7 @@ const [year, month, day, hour, minutes, seconds] = [date.getFullYear(), date.get
 require('dotenv').config();
 require('https').createServer((_request, response) => {
 	response.writeHead(200);
-	response.write(`ralsei372005's Discord Bot Version ${version}`);
-	response.write(`${year}.${month}.${day} ${hour}:${minutes}:${seconds}`);
-	response.end();
+	response.end(`ralsei372005's Discord Bot Version ${version}\n${year}.${month}.${day} ${hour}:${minutes}:${seconds}`);
 }).listen(3000);
 
 const {version} = require('./package.json');
