@@ -1,8 +1,10 @@
-const fetch = require('node-fetch');
+'use strict';
+
 const {version} = require('../../package.json');
 const {pfp, ranks, emojis} = require('../../config.json');
 const {Command} = require('discord.js-commando');
 const {MessageEmbed} = require('discord.js');
+const fetch = require('node-fetch');
 
 module.exports = class user extends Command {
 	constructor(client) {
