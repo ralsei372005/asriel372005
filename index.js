@@ -2,9 +2,11 @@ const date = new Date();
 const [year, month, day, hour, minutes, seconds] = [date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()];
 
 require('dotenv').config();
-require('https').createServer((_request, response) => {
+require('http').createServer((_request, response) => {
 	response.writeHead(200);
-	response.end(`ralsei372005's Discord Bot Version ${version}\n${year}.${month}.${day} ${hour}:${minutes}:${seconds}`);
+	response.write(`ralsei372005's Discord Bot Version ${version}`);
+	response.write(`${year}.${month}.${day} ${hour}:${minutes}:${seconds}`);
+	response.end();
 }).listen(3000);
 
 const {version} = require('./package.json');
