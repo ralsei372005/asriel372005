@@ -84,10 +84,10 @@ module.exports = class user extends Command {
 		}
 
 		if (emoji) {
-			message.say(embed);
+			message.say(`\`asriel user ${username} false\``, {embed});
 		} 
 		else {
-			message.say(`Don't want emoji? \`asriel user ${username} false\``, {embed});
+			message.say(embed);
 		}
 	}
 };
