@@ -19,16 +19,16 @@ module.exports = class user extends Command {
 				type: 'string',
 				validate: username => /^[a-zA-Z0-9-_]{3,16}$/.test(username)
 			}, {
-				key: 'raw',
-				prompt: '',
-				type: 'string',
-				default: '',
-				oneOf: ['', 'raw']
+				key: 'emoji',
+				prompt: 'Emoji?',
+				type: 'boolean',
+				default: true,
+				oneOf: [true, false]
 			}]
 		});
 	}
 
-	async run(message, {username, raw}) {
+	async run(message, {username, emoji}) {
 		const embed = new MessageEmbed()
 			.setAuthor(message.author.tag, message.author.displayAvatarURL({format: 'png', dynamic: true}))
 			.setColor('#00ff00')
@@ -52,47 +52,48 @@ module.exports = class user extends Command {
 		const score = records.data.records.blitz.record && records.data.records.blitz.record.endcontext.score;
 
 		embed
-			.setTitle(toEmojis(username.toUpperCase(), raw))
+			.setTitle(toEmojis(username.toUpperCase(), emoji))
 			.setThumbnail(`https://tetr.io/user-content/avatars/${user._id}.jpg?rv=${user.avatar_revision}`)
-			.addField('Online Games Played', toEmojis(user.gamesplayed, raw), true)
-			.addField('Online Games Won', toEmojis(user.gameswon, raw), true)
+			.addField('Online Games Played', toEmojis(user.gamesplayed, emoji), true)
+			.addField('Online Games Won', toEmojis(user.gameswon, emoji), true)
 			.addField('\u200B', '\u200B', true)
-			.addField('Tetra League Games Played', toEmojis(league.gamesplayed, raw), true)
-			.addField('Tetra League Games Won', toEmojis(league.gameswon, raw), true)
+			.addField('Tetra League Games Played', toEmojis(league.gamesplayed, emoji), true)
+			.addField('Tetra League Games Won', toEmojis(league.gameswon, emoji), true)
 			.addField('\u200B', '\u200B', true);
 
 		if (rating && glicko && rank) {
 			embed
-				.addField('Rating', toEmojis(rating.toFixed(0), raw), true)
-				.addField('Glicko', toEmojis(glicko.toFixed(0), raw), true)
+				.addField('Rating', toEmojis(rating.toFixed(0), emoji), true)
+				.addField('Glicko', toEmojis(glicko.toFixed(0), emoji), true)
 				.addField('Rank', ranks[rank], true);
 		}
 
 		if (apm && pps && vs) {
 			embed
-				.addField('Attack Per Minute', toEmojis(apm, raw), true)
-				.addField('Pieces Per Second', toEmojis(pps, raw), true)
-				.addField('Versus Score', toEmojis(vs, raw), true);
+				.addField('Attack Per Minute', toEmojis(apm, emoji), true)
+				.addField('Pieces Per Second', toEmojis(pps, emoji), true)
+				.addField('Versus Score', toEmojis(vs, emoji), true);
 		}
 
 		if (finalTime) {
-			embed.addField('40 Lines', toEmojis(`${(finalTime / 60000).toFixed(0)}:${finalTime % 60000 < 10000 ? '0' : ''}${(finalTime % 60000 / 1000).toFixed(3)}`, raw), true);
+			embed.addField('40 Lines', toEmojis(`${(finalTime / 60000).toFixed(0)}:${finalTime % 60000 < 10000 ? '0' : ''}${(finalTime % 60000 / 1000).toFixed(3)}`, emoji), true);
 		}
 
 		if (score) {
-			embed.addField('Blitz', toEmojis(score, raw), true);
+			embed.addField('Blitz', toEmojis(score, emoji), true);
 		}
 
-		if (raw) {
+		if (emoji) {
 			message.say(embed);
-		} else {
-			message.say(`\`asriel user ${username} raw\` for raw numbers and letters instead of emojis`, {embed});
+		} 
+		else {
+			message.say(`Don't want emoji? \`asriel user ${username} false\``, {embed});
 		}
 	}
 };
 
-function toEmojis(arg, raw) {
-	if (raw) {
+function toEmojis(arg, emoji) {
+	if (!emoji) {
 		return arg;
 	}
 
