@@ -1,2 +1,2 @@
 language = "nodejs"
-run = "git pull ; ./git-lfs install ; ./git-lfs pull ; ./node ."
+run = "git pull ; ./bin/git-lfs install ; ./bin/git-lfs pull ; ./bin/node ."
