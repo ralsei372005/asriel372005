@@ -85,8 +85,7 @@ module.exports = class user extends Command {
 
 		if (emoji) {
 			message.say(`\`asriel user ${username} false\``, {embed});
-		} 
-		else {
+		} else {
 			message.say(embed);
 		}
 	}
