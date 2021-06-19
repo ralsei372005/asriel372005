@@ -16,7 +16,6 @@ client.once('ready', () => {
 	client.user.setActivity(`ralsei372005's Discord Bot Version ${version}`);
 	console.log(`ralsei372005's Discord Bot Version ${version}`);
 });
-
 client.registry
 	.registerDefaultTypes()
 	.registerGroups(groups)
