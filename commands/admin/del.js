@@ -1,5 +1,6 @@
 'use strict';
 
+// Require Discord.js Commando
 const {Command} = require('discord.js-commando');
 
 module.exports = class del extends Command {

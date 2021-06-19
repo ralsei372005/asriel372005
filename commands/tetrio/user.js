@@ -2,6 +2,7 @@
 
 'use strict';
 
+// Require Package Version, Config, Discord.js Commando, Discord.js Message Embed, Node Fetch
 const {version} = require('../../package.json');
 const {pfp, ranks} = require('../../config.json');
 const {Command} = require('discord.js-commando');
