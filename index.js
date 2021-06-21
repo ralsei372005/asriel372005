@@ -13,6 +13,7 @@ const {commandPrefix, owner, groups} = require('./config.json');
 const {CommandoClient} = require('discord.js-commando');
 const {Database} = require('quickmongo');
 
+// New Client
 const client = new CommandoClient({commandPrefix, owner});
 
 // Login
@@ -20,9 +21,8 @@ client.login(process.env.token);
 
 // Ready Set Activity, Log
 client.once('ready', () => {
-	client.line = 0;
 	client.user.setActivity(`ralsei372005's Discord Bot Version ${version}`);
-	console.log(`ralsei372005's Discord Bot Version ${version}`);
+	console.log('✅ Bot');
 });
 
 // Register Default Types, Groups, Default Groups, Default Commands, Commands In /commands/
@@ -33,17 +33,11 @@ client.registry
 	.registerDefaultCommands()
 	.registerCommandsIn(require('path').join(__dirname, './commands'));
 
-// Database
-const db = new Database(`mongodb+srv://${process.env.user}:${process.env.pass}@attack.jjk0k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
+// New Database
+const db = new Database(process.env.mongo);
 
-db.on('ready', () => {
-	console.log('✅ Database');
-});
+db.on('ready', () => console.log('✅ Database'));
 
-db.on('error', error => {
-	console.log(`❌ Database\n${error}`);
-});
+const asriel372005 = db.createModel('asriel372005');
 
-const chriscj = db.createModel('chriscj');
-
-module.exports = {chriscj};
+module.exports = {asriel372005};

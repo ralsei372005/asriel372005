@@ -15,8 +15,8 @@ module.exports = class attack extends Command {
 	}
 
 	run(message) {
-		const {chriscj} = require('../../index');
-		chriscj.get(message.guild.id).then(value => {
+		const {asriel372005} = require('../../index');
+		asriel372005.get(message.guild.id).then(value => {
 			if (!value) {
 				value = 1000;
 			}
@@ -29,7 +29,7 @@ module.exports = class attack extends Command {
 				`Erm you did the skilled attack :hearts: You inflicted 4 damages (${value - 4}/1000)`,
 				`Eww you did a pro attack :hearts: You inflicted 5 damages (${value - 5}/1000)`
 			];
-			chriscj.set(message.guild.id, value - damage - 1);
+			asriel372005.set(message.guild.id, value - damage - 1);
 			message.say(random[damage]);
 		});
 	}
