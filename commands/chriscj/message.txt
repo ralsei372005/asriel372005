@@ -1,0 +1,170 @@
+var gdt = {}
+var Await = { Time : '', awaited : '', gun : '' };
+var move = {};
+var playerA = { HP : 100, ID : 401450759981629450};
+var playerB = { HP : 100, ID : 379643682984296448};
+var count = 0
+var countM = 0
+var gamemode = 0;
+var canShootTimer = new Set();
+var healInterval = [];
+var healCount = [];
+var notMoved = [];
+var Ptimer = [];
+var deck = [];
+var Card = { oponentID : '' };
+var saveCount = 0
+var PLdata = [];
+var talkSpam = [];
+var lastSondage = { lastID : 0, plID : 0};
+async function fireCommand(receivedMessage, arguments, ID){
+//	receivedMessage.channel.send(`A: ${playerA.ID}   B: ${playerA.ID}   ID: ${receivedMessage.author.id}`)
+	if (playerA.ID == 0) return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, This game has not been started. Try =shooter start   to start the game.`)
+	if (playerA.ID != receivedMessage.author.id && playerB.ID != receivedMessage.author.id) return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, Wait, you're not on this game! If you want to join it, try =shooter join.`)
+	if (!Ptimer[receivedMessage.author.id]) Ptimer[receivedMessage.author.id]=0
+	if (!notMoved[receivedMessage.author.id]) notMoved[receivedMessage.author.id] = 1
+	if (gamemode==2&&ID == 1){
+		if (canShootTimer.has(receivedMessage.author.id)){
+			const rand = ["lol you failed, you too fast lolol (+5secs)","enjoy those 5 more seconds lol","talk to me after your cooldown! I think it will be longer! (+5secs)","you're trying to fire a gun, type Z in five seconds ||jk try again in five seconds lol||","no spamming!  +5 secs","Going too fast is a bad idea! +5secs"]
+			Ptimer[receivedMessage.author.id]+=5000
+			return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+", "+rand[Math.floor(Math.random() * rand.length)]+" Now, you have to wait "+Ptimer[receivedMessage.author.id]/1000+" seconds");
+		}
+	}
+	if (ID == 1){
+		Gun = ''
+		var ToWait=12000
+		const gun = ["ar","famas","suppressed ar","tommy gun","suppressed tommy gun", "suppressed smg", "smg", "uzi", "shotgun", "revolver", "deagle","sniper","scoped ar","sm sniper","p90","machine gun","lmg"]
+		if(gun.some(word => arguments.join(',').toLowerCase().includes(word)) ) {
+			if (arguments[0] =='ar') Gun = 'n AR',ToWait=11000
+			else if (arguments =='famas') Gun = ' famas',ToWait=14500
+			else if (arguments[0] =='suppressed'&& arguments[1] == 'ar') Gun = ' suppressed AR',ToWait=11000
+			else if (arguments =='scoped,ar') Gun = ' scoped AR',ToWait=10000
+			else if (arguments =='tommy,gun') Gun = ' Tommy gun',ToWait=9000
+			else if (arguments =='suppressed,tommy,gun') Gun = ' suppressed tommy gun',ToWait=9000
+			else if (arguments[0] =='suppressed'&& arguments[1] == 'smg') Gun = ' suppressed SMG',ToWait=4000
+			else if (arguments[0] =='smg') Gun = 'n SMG',ToWait=4000
+			else if (arguments =='uzi') Gun = ' Uzi',ToWait=6500
+			else if (arguments =='machine,gun'||arguments =='lmg') Gun = ' Machine gun',ToWait=50
+			else if (arguments[0] =='p90') return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, You can't use P90; they are removed from the game.`)//Gun =  ' P90',ToWait=4500
+			else if (arguments =='suppressed,p90') return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, You can't use suppressed P90; they are removed from the game.`) //Gun =  ' suppressed P90',ToWait=4500
+			else if (arguments =='heavy,sniper') return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, RIP, You can't use heavy snipers.. They were never added to this version of the game, because they were too bad lol.. (never fire an heavy sniper)`)
+			else if (arguments =='ba,sniper' && gamemode == 1) return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, WAIT, NO! THAT'S TOO OP IN THIS GAMEMODE!!! CANCEL IT!`)
+			else if (arguments[0] =='shotgun') Gun = ' shotgun',ToWait=20000
+			else if (arguments =='revolver') Gun = ' revolver',ToWait=12500
+			else if (arguments =='deagle') Gun = ' deagle',ToWait=15000
+			else if (arguments =='sniper') Gun = ' sniper',ToWait=20000//['+parseInt(arguments[1], 10)+']'
+			else if (arguments =='sm,sniper') Gun = ' semi-auto sniper',ToWait=25000
+			else if (arguments =='ba,sniper') Gun = ' Bolt Action Sniper',ToWait=35000
+			else return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, Wait, That's not a correct gun!`);
+			
+			Await[receivedMessage.author.id] = { Time : receivedMessage.createdTimestamp, awaited : 'z' , Gun : arguments[0,1]};
+			receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, Ok, You are trying to fire a${Gun}. Type Z in five seconds.`)
+			if (gamemode==2) { Ptimer[receivedMessage.author.id]+=ToWait //+ (notMoved[receivedMessage.author.id]*0.2) * ToWait
+			if (notMoved[receivedMessage.author.id] > 0) Ptimer[receivedMessage.author.id]+=4000
+			receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+", You now have to wait "+Ptimer[receivedMessage.author.id]/1000+" secs before shooting again.")
+			notMoved[receivedMessage.author.id] += 1
+			if (Ptimer[receivedMessage.author.id]>0) WaitBeforeShooting(receivedMessage.author.id)
+			}
+			await receivedMessage.channel.awaitMessages(response => ["z"].indexOf(response.content.toLowerCase()) >= 0, {
+			max: 1,
+			time: 8000,
+			errors: ['time'],
+			})
+			.catch(() => {
+			Await[receivedMessage.author.id] = { Time : 0, awaited : '' };
+			return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, Well, Too Late!`);
+			});
+	} else if (arguments.length < 1) {
+		return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, Choose one of those guns :   ar, burst ar, suppressed ar, tommy gun, suppressed tommy gun, suppressed smg, smg, burst smg, shotgun, revolver, deagle, sniper, scoped AR, sm sniper.`);
+	} else return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, That's not a correct gun!`);
+	}
+	if (ID == 2){
+		if (typeof(move[255])=='undefined') {
+			move[255] = 30
+		}
+		var rand = Math.floor((receivedMessage.createdTimestamp-Await[receivedMessage.author.id].Time)/100)/10
+		var accuracy = 5
+		var bestRange = 15
+		var bestRangeB = 0
+		var damage = 15
+		var FinalDMG = 0
+//assault rifle(normal)=12   SP -5        Assault rifle(burst)=15     
+		if (Gun == 'n AR') accuracy = 3, damage = 8, bestRange=30, bestRangeB=10
+		else if (Gun == ' famas') accuracy = 1.5, damage = 13, bestRange=30, bestRangeB=10
+		else if (Gun == ' suppressed AR') accuracy = 7, damage = 6, bestRange=30, bestRangeB=10
+		else if (Gun == ' scoped AR') accuracy = 0, damage = 2.5, bestRange=20, bestRangeB=20
+		else if (Gun == ' Tommy gun') accuracy = 4, damage = 15, bestRange=20, bestRangeB=10
+		else if (Gun == ' suppressed tommy gun') accuracy = 7, damage = 12, bestRange=20, bestRangeB=10
+		else if (Gun == ' suppressed SMG') accuracy = 6, damage = 3, bestRange=15, bestRangeB=5
+		else if (Gun == 'n SMG') accuracy = 4, damage = 4, bestRange=15, bestRangeB=5
+		else if (Gun == ' Uzi') accuracy = 2, damage = 6, bestRange=15, bestRangeB=5
+		else if (Gun == ' Machine gun') accuracy = -0.5, damage = 6, bestRange=30, bestRangeB=15
+//		else if (Gun == ' P90') accuracy = 2, damage = 5, bestRange=15, bestRangeB=5
+//		else if (Gun == ' suppressed P90') accuracy = 3, damage = 4, bestRange=15, bestRangeB=5
+		else if (Gun == ' shotgun') accuracy = 8, damage = 25, bestRange=0, bestRangeB=0
+		else if (Gun == ' revolver') accuracy = 5, damage = 12, bestRange=35, bestRangeB=0
+		else if (Gun == ' deagle') accuracy = 6, damage = 16, bestRange=38, bestRangeB=0
+		else if (Gun == ' sniper') accuracy = 10, damage = 25, bestRange=50, bestRangeB=80
+		else if (Gun == ' semi-auto sniper') accuracy = 6, damage = 20, bestRange=50, bestRangeB=80
+		else if (Gun == ' Bolt Action Sniper') accuracy = 16, damage = 37, bestRange=85, bestRangeB=140
+		if (gamemode==1){
+			
+		if (Gun == ' suppressed SMG') accuracy = 6, damage = 8, bestRange=15, bestRangeB=5
+		else if (Gun == 'n SMG') accuracy = 4, damage = 10, bestRange=15, bestRangeB=5
+		else if (Gun == ' Uzi') accuracy = 2, damage = 12, bestRange=15, bestRangeB=5
+			
+			
+		}
+		var inaccuracy = 10-accuracy
+		if (bestRange>move[255]) inaccuracy+=-3+(bestRange-move[255])/2
+		if (bestRange<move[255]) inaccuracy+=-3+(move[255]-bestRange)/2
+
+		if (bestRange>move[255]&&bestRangeB<move[255]) inaccuracy-=(bestRange-move[255])/2
+		if (bestRange<move[255]&&bestRange>move[255]) inaccuracy-=(move[255]-bestRange)/2
+		if (bestRange==move[255]) inaccuracy+=-4
+		if (inaccuracy>11) inaccuracy = inaccuracy/1.1
+		if (inaccuracy>14) inaccuracy = inaccuracy/1.2
+		inaccuracy = Math.floor(inaccuracy*2)/2
+		if (inaccuracy<0) inaccuracy = 0
+		if (Gun == ' Bolt Action Sniper' && inaccuracy > 12)  inaccuracy = 12
+		if (move[255]>30 && Gun == ' shotgun') inaccuracy= 50
+    if (move[255]>20 && Gun == ' scoped AR') inaccuracy= -5
+		var txtATTA = ""
+		var DMGValue=0
+		if (rand<2) txtATTA="You're not doing it well, You're too fast! You missed him.",DMGValue=0
+		if (rand >=2 && rand<4+inaccuracy/3) txtATTA="Too early! You missed him.",DMGValue=0
+		if (rand >=3+inaccuracy/2 && rand<4.2+inaccuracy/2) txtATTA="And it's a legshot!",DMGValue=1
+		if (rand >=4.2+inaccuracy/4 && rand<5) txtATTA="You somehow managed to do a bodyshot.",DMGValue=2
+		if (rand >=5 && rand<6-inaccuracy/10) txtATTA="Wow. Headshot!",DMGValue=3
+		if (rand >=6-inaccuracy/10 && rand<6.5-inaccuracy/8) txtATTA="Bodyshot.",DMGValue=2
+		if (rand >=6.5-inaccuracy/8 && rand<7-inaccuracy/6) txtATTA="A little bit late but legshot.",DMGValue=1
+		if (rand >=7-inaccuracy/6) txtATTA="Too late! You missed him.",DMGValue=0
+		if (Gun == ' revolver') FinalDMG = (DMGValue * (3-inaccuracy))
+		else if (Gun == ' deagle') FinalDMG = (DMGValue * (2-inaccuracy))
+		FinalDMG=(Math.floor(FinalDMG+DMGValue * damage)/5)*5   //var FinalDMG=Math.floor((DMGValue * damage+(DMGValue * (5-inaccuracy)))/5)*5
+		if (FinalDMG<0) FinalDMG=5
+		if (count>0){
+			FinalDMG=(Math.floor(DMGValue * (damage/countM)*count)/5)*5
+			if (playerA.ID == receivedMessage.author.id) playerB.HP -= FinalDMG
+			if (playerB.ID == receivedMessage.author.id) playerA.HP -= FinalDMG
+			if (playerA.ID == receivedMessage.author.id) return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, ${txtATTA} ${rand}\nThe best range was between ${bestRange} and ${bestRangeB}, the inaccuracy was ${inaccuracy}.  You dealt ${FinalDMG} damages, your oponent now has ${playerB.HP} HP left.\n${count} shoots`)
+			if (playerB.ID == receivedMessage.author.id) return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, ${txtATTA} ${rand}\nThe best range was between ${bestRange} and ${bestRangeB}, the inaccuracy was ${inaccuracy}.  You dealt ${FinalDMG} damages, your oponent now has ${playerA.HP} HP left.\n${count} shoots`)
+		}
+		
+		if (playerA.ID == receivedMessage.author.id) playerB.HP -= FinalDMG
+		if (playerB.ID == receivedMessage.author.id) playerA.HP -= FinalDMG
+		if (playerA.ID == receivedMessage.author.id) return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, ${txtATTA} ${rand}\nThe best range was between ${bestRange} and ${bestRangeB}, the inaccuracy was ${inaccuracy}.  You dealt ${FinalDMG} damages, your oponent now has ${playerB.HP} HP left.`)
+		if (playerB.ID == receivedMessage.author.id) return receivedMessage.channel.send(receivedMessage.author.username.slice(0,7)+`, ${txtATTA} ${rand}\nThe best range was between ${bestRange} and ${bestRangeB}, the inaccuracy was ${inaccuracy}.  You dealt ${FinalDMG} damages, your oponent now has ${playerA.HP} HP left.`)
+	}//opponentHP[receivedMessage.author.id]
+}
+function WaitBeforeShooting(playerID){
+	canShootTimer.add(playerID);
+	var intervalId = null;
+	intervalId = setInterval(function removeONE(){
+	Ptimer[playerID]-=1000;
+    if(Ptimer[playerID] <= 0) {
+		canShootTimer.delete(playerID);
+		clearInterval(intervalId);
+	}
+	}, 1000);
+}
