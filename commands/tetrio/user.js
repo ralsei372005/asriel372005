@@ -79,7 +79,7 @@ module.exports = class user extends Command {
 
 		// 40 Lines Final Time
 		if (finalTime) {
-			embed.addField('40 Lines', `${(finalTime / 60000).toFixed(0)}:${finalTime % 60000 < 10000 ? '0' : ''}${(finalTime % 60000 / 1000).toFixed(3)}`, true);
+			embed.addField('40 Lines', `${Math.floor(finalTime / 60000)}:${finalTime % 60000 < 10000 ? '0' : ''}${(finalTime % 60000 / 1000).toFixed(3)}`, true);
 		}
 
 		// Blitz Score
